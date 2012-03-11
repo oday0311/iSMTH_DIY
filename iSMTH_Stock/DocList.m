@@ -113,7 +113,19 @@
     
     int i = 0;
     while( containTopic.length > 0 ) {
+        if (i++ == 8) {
+            NSLog(@"this is a testing code for debug");
+        }
         NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/Stock/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
+    
+        NSRange range1_isTop = NSMakeRange(0, 0);
+        range1_isTop = [postlist rangeOfString:@"<tr class=\"top\""];
+        NSRange range1_isTopOdd=NSMakeRange(0, 0);
+        range1_isTopOdd = [postlist rangeOfString:@"<tr class=\"top bg-odd\">"];
+        if (range1_isTop.length==0 && range1_isTopOdd.length == 0) {
+            ///this topic is not a top topic.
+            
+        }
         
         NSString* substring_topic_writer = [self getSubString2_beginstringnotinclude:substring_topic BeginString:@"<td class=\"title_9\"><a href=" EndString:@"</a>"];
        
@@ -122,14 +134,28 @@
         if (range2.length == 0) {
             break;
         }
-        NSString* substring_topic_writer2  = [substring_topic_writer substringFromIndex:range2.location+range2.length];
+        NSString* substring_topic_title  = [substring_topic_writer substringFromIndex:range2.location+range2.length];
         
         
         NSString* substring_topic_link= [self getSubString:substring_topic BeginString:@"href=\"" EndString:@"title"];
         
         
-        [arrayList_link addObject:substring_topic_link];
-        [arrayList addObject:substring_topic_writer2];
+        
+        topic* newtopic = [[topic alloc] init];
+        
+        newtopic.link = substring_topic_link;
+        newtopic.topicTitle = substring_topic_title;
+        if (range1_isTop.length==0 && range1_isTopOdd.length ==0) {
+            NSLog(@" this topic is not a top topic.");
+            newtopic.IsTopTopic = FALSE;
+        }else
+        {
+            newtopic.IsTopTopic =TRUE;
+        }
+        
+        
+        
+        [arrayList addObject:newtopic];
         
         
         
@@ -187,8 +213,20 @@
     }
     NSLog(@"%d",[arrayList count]);
     if ([indexPath row] <= [arrayList count] - 1) {
-        cell.textLabel.textColor  =[UIColor orangeColor];
-        cell.textLabel.text = [arrayList objectAtIndex:indexPath.row];
+        topic* currentTopic = [arrayList objectAtIndex:indexPath.row];
+        
+        
+        
+        
+        if (currentTopic.IsTopTopic) {
+             cell.textLabel.textColor  =[UIColor orangeColor];
+        }
+        else
+        {
+             cell.textLabel.textColor  =[UIColor blackColor];
+        }
+       
+        cell.textLabel.text = currentTopic.topicTitle;
         NSLog(@"   THE LABLE contain is %@ ", [arrayList objectAtIndex:indexPath.row]);
     }else{
         cell.textLabel.textColor  =[UIColor blueColor];
@@ -205,9 +243,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    topic* temp = [arrayList objectAtIndex:indexPath.row];
     
     
-    NSString* link = [arrayList_link objectAtIndex:indexPath.row];
+    NSString* link = temp.link;
     link=[link substringFromIndex:7]; //   href="/
     link = [link substringToIndex:link.length-2];  /// (" )
     NSString* topic_detaillink = [@"" stringByAppendingFormat:@"%@%@",SMTH_BASE_URL,link];

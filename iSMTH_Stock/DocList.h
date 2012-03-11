@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "DataSingleton.h"
-
+#import "topic.h"
 @interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
