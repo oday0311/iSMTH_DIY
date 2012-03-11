@@ -28,10 +28,15 @@
     ////////
     
     NSString* stockBoardlist;
+    
+    
+    ////
+    
+    NSString* topic_detail_link;
 };
 
 + (DataSingleton *)singleton;
-@property(nonatomic,retain) NSString* finalstring;
+@property(nonatomic,retain) NSString* topic_detail_link;@property(nonatomic,retain) NSString* finalstring;
 @property(nonatomic,retain) NSString* stockBoardlist;
 @end
 

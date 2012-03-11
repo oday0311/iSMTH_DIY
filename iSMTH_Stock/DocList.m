@@ -201,20 +201,25 @@
         
     
 }
+#import  "topicDetailShow.h"
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+    
     
     NSString* link = [arrayList_link objectAtIndex:indexPath.row];
     link=[link substringFromIndex:7]; //   href="/
     link = [link substringToIndex:link.length-2];  /// (" )
     NSString* topic_detaillink = [@"" stringByAppendingFormat:@"%@%@",SMTH_BASE_URL,link];
     NSLog(@"Tableview  %@ " ,topic_detaillink);
-    NSString* topic_detailinform = [httpclient httpSendRequest:topic_detaillink];
     
-    //NSLog(@" the response is show as %@", topic_detailinform);
-    //topic_detaillink
     
+    dataRecorder.topic_detail_link = topic_detaillink;
+    topicDetailShow*
+    viewController2 = [[topicDetailShow alloc] initWithNibName:@"topicDetailShow" bundle:nil];
+    [self.navigationController pushViewController:viewController2 animated:YES];
+    
+       
 
 }
 

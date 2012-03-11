@@ -11,6 +11,10 @@
 @implementation DataSingleton
 @synthesize finalstring;
 @synthesize stockBoardlist;
+@synthesize topic_detail_link;
+
+
+
 static DataSingleton * MyCommon_Singleton = nil;
 
 + (DataSingleton *)singleton

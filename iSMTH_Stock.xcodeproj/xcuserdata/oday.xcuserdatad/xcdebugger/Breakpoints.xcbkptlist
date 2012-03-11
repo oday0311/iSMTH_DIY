@@ -35,12 +35,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iSMTH_Stock/DocList.m"
-         timestampString = "353137552.537272"
+         timestampString = "353147904.93438"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
+         startingLineNumber = "208"
+         endingLineNumber = "208"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "topicDetailShow.m"
+         timestampString = "353147976.048874"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "-loadHtml:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
