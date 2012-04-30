@@ -11,7 +11,7 @@
 
 
 
-@interface MyHttp_remoteClient : NSObject<NSXMLParserDelegate>
+@interface MyHttp_remoteClient : NSObject
 {
     NSString* pageSource;
 
@@ -24,4 +24,6 @@
 - (NSString*) httpSendRequest:(NSString*)translateString;
 - (BOOL) testReachAblity;
 -(NSString*) digest:(NSString*)input;
+
+-(NSString*) httpSendSearchRequest:(NSString*)searchkey;
 @end

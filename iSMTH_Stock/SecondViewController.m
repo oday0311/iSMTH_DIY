@@ -135,4 +135,9 @@
 }
 
 
+- (IBAction)testAction:(id)sender {
+    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+    [httpclient httpSendSearchRequest:@"算法"];
+    
+}
 @end

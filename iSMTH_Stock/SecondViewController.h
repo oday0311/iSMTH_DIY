@@ -13,5 +13,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
+- (IBAction)testAction:(id)sender;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "topicDetailShow.h"
 #import "DataSingleton.h"
+#import "NSString+PDRegex.h"
+
 @implementation topicDetailShow
 @synthesize webivew;
 
@@ -55,6 +57,23 @@
 }
 
 #define POST_STARTER @"<td class=\"a-content a-no-bottom a-no-top\">"
+-(NSString*)getPostInformationNew:(NSString*) inputstring
+{
+    
+    NSArray *matches = [inputstring stringsByExtractingGroupsUsingRegexPattern:@"<div class=\"a-wrap corner\"><table class=\"article\">(.*)</a></td></tr></table></div>"
+                                               caseInsensitive:NO treatAsOneLine:NO];
+   
+    NSString * returnstring = @"";
+    for (int i = 0 ; i<[matches count]; i++) {
+        returnstring = [returnstring stringByAppendingFormat:@"<div class=\"a-wrap corner\"><table class=\"article\">%@</a></td></tr></table></div>",                        [matches objectAtIndex:i] ];
+        
+    }
+    NSLog(@"the resurn string is %@", returnstring);
+    
+    return returnstring;
+                       
+}
+
 
 -(NSString*) getPostInformation:(NSString*)inputstring
 {
@@ -97,7 +116,8 @@
 	[html appendString:@"<head>"];
 	[html appendString:@"</head><body>"];
 	
-    NSString*temp = [self getPostInformation:middlecontenthtml];
+    //NSString*temp = [self getPostInformation:middlecontenthtml];
+    NSString*temp = [self getPostInformationNew:middlecontenthtml];
     [html appendString:temp];
     
     
@@ -121,9 +141,12 @@
     
     MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
     NSString* targetlink = [DataSingleton singleton].topic_detail_link;
+    
+    NSLog(@" the targetlink is %@", targetlink);
+    
     NSString* topic_detailinform = [httpclient httpSendRequest:targetlink];
     
-    //NSLog(@" the response is show as %@", topic_detailinform);
+    NSLog(@" the response is show as %@", topic_detailinform);
     //topic_detaillink
     html = [[NSMutableString alloc] init];
     
