@@ -35,11 +35,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iSMTH_Stock/DocList.m"
-         timestampString = "353161352.841559"
+         timestampString = "353169131.084324"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "247"
-         endingLineNumber = "247"
+         startingLineNumber = "257"
+         endingLineNumber = "257"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -83,6 +83,20 @@
          startingLineNumber = "117"
          endingLineNumber = "117"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "iSMTH_Stock/FirstViewController.m"
+         timestampString = "353250634.712725"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
+         landmarkName = "-getStockBoardlist:withInput:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -109,14 +109,14 @@
     NSString* postlist = dataRecorder.stockBoardlist;
     
     NSRange containTopic = NSMakeRange(0, 0);
-    containTopic = [postlist rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/Stock/"];
+    containTopic = [postlist rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
     
     int i = 0;
     while( containTopic.length > 0 ) {
         if (i++ == 8) {
             NSLog(@"this is a testing code for debug");
         }
-        NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/Stock/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
+        NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
     
         NSRange range1_isTop = NSMakeRange(0, 0);
         range1_isTop = [postlist rangeOfString:@"<tr class=\"top\""];
@@ -165,7 +165,7 @@
                 
         
         
-        containTopic = [fowllowingList rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/Stock/"];
+        containTopic = [fowllowingList rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
     }
     
     
@@ -195,7 +195,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //return the height
-    return 30;
+    return 60;
 }
 
 
@@ -220,18 +220,29 @@
         
         if (currentTopic.IsTopTopic) {
              cell.textLabel.textColor  =[UIColor orangeColor];
+            
+            int randNum = 10;
+            NSString* imageSouce = [@"" stringByAppendingFormat: @"title_%d",randNum];
+            cell.imageView.image =[UIImage imageNamed: imageSouce];
         }
         else
         {
+            
+            int randNum = rand()%16+1;
+            NSString* imageSouce = [@"" stringByAppendingFormat: @"title_%d",randNum];
+            cell.imageView.image =[UIImage imageNamed: imageSouce];
              cell.textLabel.textColor  =[UIColor blackColor];
         }
        
+        
         cell.textLabel.text = currentTopic.topicTitle;
         NSLog(@"   THE LABLE contain is %@ ", [arrayList objectAtIndex:indexPath.row]);
     }else{
         cell.textLabel.textColor  =[UIColor blueColor];
         cell.textLabel.text = @"点击加载更多";       
     }
+    
+   
     return cell;
     
 

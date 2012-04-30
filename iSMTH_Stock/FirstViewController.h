@@ -12,6 +12,10 @@
     UITextView *textView;
     UINavigationController* nav;
     UITableView *tableref;
+    
+    
+    
+    NSArray* boardnamelist;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;

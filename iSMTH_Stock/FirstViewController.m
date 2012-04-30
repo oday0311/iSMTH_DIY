@@ -45,6 +45,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    //boardnamelist = [[NSArray alloc] initWithArray:[@"Stock",@"Express",nil]];
+    
     
       
 }
@@ -117,10 +119,10 @@
 
 }
 
-- (IBAction)getStockBoardlist:(id)sender {
+- (void)getStockBoardlist:(id)sender withInput:(NSString*)BASE_URL {
     
     MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-    NSString*signature = [httpclient httpSendRequest:GET_STOCKBOARD_LIST];
+    NSString*signature = [httpclient httpSendRequest:BASE_URL];
     int total_length = signature.length;
     if (total_length > 10) {
                 
@@ -163,7 +165,13 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self getStockBoardlist:self];
+    if (indexPath.row == 0) {
+        [self getStockBoardlist:self withInput:GET_STOCKBOARD_LIST];
+    }
+   else
+   {
+        [self getStockBoardlist:self withInput:GET_NEWEXPRESS_LIST];
+   }
 }
 
 @end
