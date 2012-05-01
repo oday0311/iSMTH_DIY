@@ -12,7 +12,7 @@
 @synthesize finalstring;
 @synthesize stockBoardlist;
 @synthesize topic_detail_link;
-
+@synthesize searchBoardResults;
 
 
 static DataSingleton * MyCommon_Singleton = nil;
@@ -27,6 +27,8 @@ static DataSingleton * MyCommon_Singleton = nil;
         {
             MyCommon_Singleton=[[DataSingleton alloc] init] ;
             MyCommon_Singleton.finalstring = @"init";
+            
+            MyCommon_Singleton.searchBoardResults = [[NSMutableArray alloc] init];
         }
     }
     

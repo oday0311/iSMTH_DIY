@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController {
+@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate> {
     UIWebView *webview;
+    UITableView *tableref;
 }
+-(void)getSearchResult:(NSString*)inputstring;
 
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 - (IBAction)testAction:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableView *tableref;
 
 @end

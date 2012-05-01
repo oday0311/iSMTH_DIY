@@ -8,8 +8,10 @@
 
 #import "SecondViewController.h"
 #import "DataSingleton.h"
+#import "NSString+PDRegex.h"
 
 @implementation SecondViewController
+@synthesize tableref;
 @synthesize webview;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -99,6 +101,7 @@
 }
 - (void)viewDidUnload
 {
+    [self setTableref:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -124,6 +127,41 @@
 	[super viewDidDisappear:animated];
 }
 
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [[DataSingleton singleton].searchBoardResults count];//[arrayList count];    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    cell.textLabel.text = [[DataSingleton singleton].searchBoardResults objectAtIndex:indexPath.row];
+    return cell;
+    
+    
+    
+    
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+
+    
+    
+}
+
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -137,7 +175,38 @@
 
 - (IBAction)testAction:(id)sender {
     MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-    [httpclient httpSendSearchRequest:@"算法"];
+    NSString* searchResult = [httpclient httpSendSearchRequest:@"算法"];
+    [self getSearchResult:searchResult];
+}
+
+//
+//<tr><td class="title_1"><a href="/nForum/board/Programming">编程技术</a><br />Programming</td><td class="title_2">
+-(void)getSearchResult:(NSString*)inputstring
+{
+    inputstring = [inputstring stringByReplacingRegexPattern:@"<td class=\"title_3\"><" withString:@"\n"];
+    
+    NSArray *matches = [inputstring stringsByExtractingGroupsUsingRegexPattern:@"<tr><td class=\"title_1\">(.*)<td class=\"title_2\">"
+                                                               caseInsensitive:NO treatAsOneLine:NO];
+    
+    DataSingleton* dataRecorder = [DataSingleton singleton];
+    for (int i = 0 ; i<[matches count]; i++) {
+        
+        NSString* temp = [matches objectAtIndex:i];
+        NSArray* boardname = [temp stringsByExtractingGroupsUsingRegexPattern:@"<a href=\"/nForum/board/(.*)\">"];
+      
+        
+        //remove additional tags
+        temp = [temp stringByReplacingRegexPattern:@"<.*\">" withString:@""];
+        temp = [temp stringByReplacingRegexPattern:@"<[a-z /]{1,6}>" withString:@" "];
+        
+        
+        [dataRecorder.searchBoardResults insertObject:temp atIndex:i];
+        
+    }
+    
+    [tableref reloadData];
+    return ;
     
 }
+
 @end

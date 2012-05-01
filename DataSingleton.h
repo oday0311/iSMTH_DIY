@@ -33,10 +33,17 @@
     ////
     
     NSString* topic_detail_link;
+    
+    NSMutableArray* searchBoardResults;
+    
+    ////////////////////////
 };
 
 + (DataSingleton *)singleton;
-@property(nonatomic,retain) NSString* topic_detail_link;@property(nonatomic,retain) NSString* finalstring;
+@property(nonatomic,retain) NSString* topic_detail_link;
+@property(nonatomic,retain) NSString* finalstring;
 @property(nonatomic,retain) NSString* stockBoardlist;
+@property(nonatomic,retain) NSMutableArray* searchBoardResults;
+
 @end
 
