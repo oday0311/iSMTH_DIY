@@ -32,8 +32,8 @@ static DataSingleton * MyCommon_Singleton = nil;
             MyCommon_Singleton.searchBoardResults = [[NSMutableArray alloc] init];
             
             MyCommon_Singleton.UserFavoriteListUrl = [[NSMutableArray alloc] init];
-            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"/nForum/board/Stock"];
-            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"/nForum/board/Picture"];
+            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/Stock"];
+            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/Picture"];
                 
             {
                 MyCommon_Singleton.UserFavoriteListName = [[NSMutableArray alloc] init];

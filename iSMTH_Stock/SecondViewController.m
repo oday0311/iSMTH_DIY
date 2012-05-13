@@ -267,7 +267,7 @@
         NSArray* boardname = [temp stringsByExtractingGroupsUsingRegexPattern:@"<a href=\"/nForum/board/(.*)\">"];
         
         NSString* boardshortUrl =[boardname objectAtIndex:0];
-        NSString* boardlongurl = [@"" stringByAppendingFormat:@"/nForum/board/%@", boardshortUrl];
+        NSString* boardlongurl = [@"" stringByAppendingFormat:@"nForum/board/%@", boardshortUrl];
         NSLog(@"board url link is %@",boardlongurl);
       
         [searchResult addObject:boardlongurl];
