@@ -14,7 +14,7 @@
 
 
 
-#define SMTH_BASE_URL @"http://www.newsmth.net/"
+#define SMTH_BASE_URL @"http://www.newsmth.net"
 
 #define NIUMAO_SIGNATURE @"http://www.newsmth.net/nForum/user/query/every1nome"
 

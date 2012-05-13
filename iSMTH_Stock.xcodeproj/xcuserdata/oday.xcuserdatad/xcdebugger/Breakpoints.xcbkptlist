@@ -91,11 +91,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iSMTH_Stock/FirstViewController.m"
-         timestampString = "353250634.712725"
+         timestampString = "358607121.324771"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
          landmarkName = "-getStockBoardlist:withInput:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -147,12 +147,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iSMTH_Stock/SecondViewController.m"
-         timestampString = "357572154.189301"
+         timestampString = "358607084.844263"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
+         startingLineNumber = "264"
+         endingLineNumber = "264"
          landmarkName = "-getSearchResult:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "iSMTH_Stock/FirstViewController.m"
+         timestampString = "358607300.685021"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

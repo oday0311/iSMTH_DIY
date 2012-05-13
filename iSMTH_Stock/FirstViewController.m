@@ -63,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [tableref reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -141,7 +142,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;//[arrayList count];    
+    return [[[DataSingleton singleton] UserFavoriteListUrl ]count];;//[arrayList count];    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +155,8 @@
     
     {
         cell.textLabel.textColor  =[UIColor orangeColor];
-        cell.textLabel.text = @"STOCK";//[arrayList objectAtIndex:indexPath.row]; 
+        NSString* namestring = [[[DataSingleton singleton] UserFavoriteListName] objectAtIndex:indexPath.row];
+        cell.textLabel.text = namestring;//[arrayList objectAtIndex:indexPath.row]; 
     }
     
     return cell;
@@ -165,13 +167,10 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        [self getStockBoardlist:self withInput:GET_STOCKBOARD_LIST];
-    }
-   else
-   {
-        [self getStockBoardlist:self withInput:GET_NEWEXPRESS_LIST];
+   
+    NSString* longUrl = [[[DataSingleton singleton] UserFavoriteListUrl] objectAtIndex:indexPath.row];
+    NSString* fullUrl = [SMTH_BASE_URL stringByAppendingFormat:@"%@",longUrl];
+        [self getStockBoardlist:self withInput:fullUrl];
    }
-}
 
 @end

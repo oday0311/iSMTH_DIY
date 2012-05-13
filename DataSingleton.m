@@ -13,7 +13,8 @@
 @synthesize stockBoardlist;
 @synthesize topic_detail_link;
 @synthesize searchBoardResults;
-
+@synthesize UserFavoriteListUrl;
+@synthesize UserFavoriteListName;
 
 static DataSingleton * MyCommon_Singleton = nil;
 
@@ -29,10 +30,28 @@ static DataSingleton * MyCommon_Singleton = nil;
             MyCommon_Singleton.finalstring = @"init";
             
             MyCommon_Singleton.searchBoardResults = [[NSMutableArray alloc] init];
+            
+            MyCommon_Singleton.UserFavoriteListUrl = [[NSMutableArray alloc] init];
+            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"/nForum/board/Stock"];
+            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"/nForum/board/Picture"];
+                
+            {
+                MyCommon_Singleton.UserFavoriteListName = [[NSMutableArray alloc] init];
+                [MyCommon_Singleton.UserFavoriteListName addObject:@"股票"];
+                [MyCommon_Singleton.UserFavoriteListName addObject:@"贴图"];
+                
+            }
+            
+            
+            
         }
     }
     
     return  MyCommon_Singleton;
+    
+}
+-(void)addDefaultUserFavorite
+{
     
 }
 +  (id)allocWithZone:(NSZone  * )zone

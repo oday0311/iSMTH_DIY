@@ -91,12 +91,40 @@
 
 }
 
-
+-(void)addSearchBar
+{
+    mysearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 3, 250, 40)];
+    mysearchBar.delegate = self;
+    
+    // change the searchBar's color
+    {
+        mysearchBar.tintColor = [UIColor grayColor];
+        UIView*segment = [mysearchBar.subviews objectAtIndex:0];
+        [segment removeFromSuperview];
+        mysearchBar.backgroundColor = [UIColor clearColor];
+    }
+    {
+        //when seach bar is selected, the keyboard type
+        UITextField* seachField = [[mysearchBar subviews] lastObject];
+        [seachField setReturnKeyType:UIReturnKeyDone];
+        
+        mysearchBar.barStyle = UIBarStyleBlackTranslucent;
+        mysearchBar.keyboardType = UIKeyboardTypeDefault;
+        mysearchBar.placeholder = @"请输入搜索关键字";
+        
+        mysearchBar.showsSearchResultsButton = YES;
+    }
+    
+    [self.navigationController.navigationBar addSubview:mysearchBar];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadHtml];
-     // Do any additional setup after loading the view, typically from a nib.
+    
+    searchResult = [[NSMutableArray alloc] init];
+  
+    //[self loadHtml];
+     
 
 }
 - (void)viewDidUnload
@@ -106,10 +134,16 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [mysearchBar removeFromSuperview];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self addSearchBar];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -117,15 +151,49 @@
     [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
 }
+
+
+#pragma UISeachBarDelegate
+#pragma mark - UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	// only show the status bar's cancel button while in edit mode
+	searchBar.showsCancelButton = YES;
+	// flush and save the current list content in case the user cancels the search later
+    
+}	
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+	searchBar.showsCancelButton = NO;
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"Text did change %@", searchText);
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = @"";
+     [searchBar resignFirstResponder];
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"Search Button Clicked");
+    
+    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+    NSString* searchResult = [httpclient httpSendSearchRequest:searchBar.text];
+    [self getSearchResult:searchResult];
+    [searchBar resignFirstResponder];
+    
+}
+
 
 
 
@@ -155,8 +223,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
     
+    /////insert the search result to datarecord/////
+    //name and url
+    DataSingleton* dataRecord= [DataSingleton singleton];    
+     [dataRecord.UserFavoriteListName addObject: [[DataSingleton singleton].searchBoardResults objectAtIndex:indexPath.row]];
+    
+    
+    ///add url ;
+    [searchResult objectAtIndex:indexPath.row];
+    [dataRecord.UserFavoriteListUrl addObject:    [searchResult objectAtIndex:indexPath.row]];
     
 }
 
@@ -173,16 +249,12 @@
 }
 
 
-- (IBAction)testAction:(id)sender {
-    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-    NSString* searchResult = [httpclient httpSendSearchRequest:@"算法"];
-    [self getSearchResult:searchResult];
-}
 
 //
 //<tr><td class="title_1"><a href="/nForum/board/Programming">编程技术</a><br />Programming</td><td class="title_2">
 -(void)getSearchResult:(NSString*)inputstring
 {
+    [searchResult removeAllObjects];
     inputstring = [inputstring stringByReplacingRegexPattern:@"<td class=\"title_3\"><" withString:@"\n"];
     
     NSArray *matches = [inputstring stringsByExtractingGroupsUsingRegexPattern:@"<tr><td class=\"title_1\">(.*)<td class=\"title_2\">"
@@ -193,7 +265,12 @@
         
         NSString* temp = [matches objectAtIndex:i];
         NSArray* boardname = [temp stringsByExtractingGroupsUsingRegexPattern:@"<a href=\"/nForum/board/(.*)\">"];
+        
+        NSString* boardshortUrl =[boardname objectAtIndex:0];
+        NSString* boardlongurl = [@"" stringByAppendingFormat:@"/nForum/board/%@", boardshortUrl];
+        NSLog(@"board url link is %@",boardlongurl);
       
+        [searchResult addObject:boardlongurl];
         
         //remove additional tags
         temp = [temp stringByReplacingRegexPattern:@"<.*\">" withString:@""];

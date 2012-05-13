@@ -37,9 +37,17 @@
     NSMutableArray* searchBoardResults;
     
     ////////////////////////
+    
+    NSMutableArray* UserFavoriteListUrl;
+    
+    NSMutableArray* UserFavoriteListName;
+    
 };
 
 + (DataSingleton *)singleton;
+@property(nonatomic,retain) NSMutableArray*UserFavoriteListUrl;
+@property(nonatomic,retain) NSMutableArray*UserFavoriteListName;
+
 @property(nonatomic,retain) NSString* topic_detail_link;
 @property(nonatomic,retain) NSString* finalstring;
 @property(nonatomic,retain) NSString* stockBoardlist;
