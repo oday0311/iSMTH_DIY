@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:iSMTH_Stock.xcodeproj">
+      location = "self:iSMTH_DIY.xcodeproj">
    </FileRef>
 </Workspace>

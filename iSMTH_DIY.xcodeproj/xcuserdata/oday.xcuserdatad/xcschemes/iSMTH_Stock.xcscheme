@@ -14,9 +14,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "624154D8150AFD9A00944D48"
-               BuildableName = "iSMTH_Stock.app"
-               BlueprintName = "iSMTH_Stock"
-               ReferencedContainer = "container:iSMTH_Stock.xcodeproj">
+               BuildableName = "iSMTH_DIY.app"
+               BlueprintName = "iSMTH_DIY"
+               ReferencedContainer = "container:iSMTH_DIY.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,9 +32,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6241550B150AFD9A00944D48"
-               BuildableName = "iSMTH_StockTests.octest"
-               BlueprintName = "iSMTH_StockTests"
-               ReferencedContainer = "container:iSMTH_Stock.xcodeproj">
+               BuildableName = "iSMTH_DIYTests.octest"
+               BlueprintName = "iSMTH_DIYTests"
+               ReferencedContainer = "container:iSMTH_DIY.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -51,9 +51,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "624154D8150AFD9A00944D48"
-            BuildableName = "iSMTH_Stock.app"
-            BlueprintName = "iSMTH_Stock"
-            ReferencedContainer = "container:iSMTH_Stock.xcodeproj">
+            BuildableName = "iSMTH_DIY.app"
+            BlueprintName = "iSMTH_DIY"
+            ReferencedContainer = "container:iSMTH_DIY.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "624154D8150AFD9A00944D48"
-            BuildableName = "iSMTH_Stock.app"
-            BlueprintName = "iSMTH_Stock"
-            ReferencedContainer = "container:iSMTH_Stock.xcodeproj">
+            BuildableName = "iSMTH_DIY.app"
+            BlueprintName = "iSMTH_DIY"
+            ReferencedContainer = "container:iSMTH_DIY.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

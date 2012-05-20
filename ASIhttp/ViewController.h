@@ -15,4 +15,5 @@
     WaterflowView *flowView;
 }
 
+- (CGFloat)flowView:(WaterflowView *)flowView heightForCellAtIndex:(NSInteger)index;
 @end

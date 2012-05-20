@@ -32,7 +32,20 @@
     self.currentPage = 1;
     
     self.imageUrls = [NSMutableArray array];
-    self.imageUrls = [NSArray arrayWithObjects:@"http://img.topit.me/l/201008/11/12815218412635.jpg",@"http://photo.l99.com/bigger/22/1284013907276_zb834a.jpg",@"http://www.webdesign.org/img_articles/7072/BW-kitten.jpg",@"http://www.raiseakitten.com/wp-content/uploads/2012/03/kitten.jpg",@"http://imagecache6.allposters.com/LRG/21/2144/C8BCD00Z.jpg",nil];
+    self.imageUrls = [NSArray arrayWithObjects:
+                                          
+                      @"http://att.newsmth.net/nForum/att/Picture/854078/214",
+                      @"http://att.newsmth.net/nForum/att/Picture/853853/10192",
+                      @"http://www.btsmth.com/attachments/1029.1036213.673.jpg",
+                      
+                      @"http://www.btsmth.com/attachments/398.1915241.1097.jpg",
+                      @"http://www.btsmth.com/attachments/874.1828644.803.jpg",
+                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
+                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
+                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
+                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
+                      
+                      nil];
 }
 
 - (void)dealloc
@@ -192,14 +205,14 @@
     
 }
 
-//- (void)flowView:(WaterflowView *)flowView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"did select at %@",indexPath);
-//}
+- (void)flowView:(WaterflowView *)flowView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"did select at %@",indexPath);
+}
 
 - (void)flowView:(WaterflowView *)flowView didSelectAtCell:(WaterFlowCell *)cell ForIndex:(int)index
 {
-    
+    NSLog(@"did selected ");
 }
 
 - (void)flowView:(WaterflowView *)_flowView willLoadData:(int)page
