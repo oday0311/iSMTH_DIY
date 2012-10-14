@@ -8,6 +8,8 @@
 
 #import "DocList.h"
 #import "constant.h"
+
+#import  "topicDetailShow.h"
 @implementation DocList
 @synthesize tableref = _tableref;
 
@@ -250,7 +252,7 @@
         
     
 }
-#import  "topicDetailShow.h"
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
