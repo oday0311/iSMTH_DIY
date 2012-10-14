@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
+		18CE5216162AEC000003FC41 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5214162AEC000003FC41 /* background.png */; };
+		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
 		623035F2150C397200DFE883 /* DocList.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F0150C397200DFE883 /* DocList.m */; };
 		623035F3150C397200DFE883 /* DocList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623035F1150C397200DFE883 /* DocList.xib */; };
 		623035F7150C399600DFE883 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F6150C399600DFE883 /* EGORefreshTableHeaderView.m */; };
@@ -98,6 +100,8 @@
 /* Begin PBXFileReference section */
 		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
+		18CE5214162AEC000003FC41 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		18CE5215162AEC000003FC41 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		623035EF150C397200DFE883 /* DocList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocList.h; path = iSMTH_Stock/DocList.h; sourceTree = "<group>"; };
 		623035F0150C397200DFE883 /* DocList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocList.m; path = iSMTH_Stock/DocList.m; sourceTree = "<group>"; };
 		623035F1150C397200DFE883 /* DocList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocList.xib; path = iSMTH_Stock/DocList.xib; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 		62303652150CEC9600DFE883 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				18CE5214162AEC000003FC41 /* background.png */,
+				18CE5215162AEC000003FC41 /* background@2x.png */,
 				623035F8150C39C700DFE883 /* blueArrow.png */,
 				623035F9150C39C700DFE883 /* blueArrow@2x.png */,
 				624154F7150AFD9A00944D48 /* second.png */,
@@ -550,6 +556,8 @@
 				62780CB7154E26B500A4AD5A /* icon@2x.png in Resources */,
 				628589A01569096800FB5410 /* blueArrow.png in Resources */,
 				628589A7156909E200FB5410 /* ViewController.xib in Resources */,
+				18CE5216162AEC000003FC41 /* background.png in Resources */,
+				18CE5217162AEC000003FC41 /* background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

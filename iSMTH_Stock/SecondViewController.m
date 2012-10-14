@@ -123,6 +123,9 @@
     
     searchResult = [[NSMutableArray alloc] init];
   
+    tableref.backgroundColor = [UIColor clearColor];
+    tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    
     //[self loadHtml];
      
 

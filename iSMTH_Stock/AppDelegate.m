@@ -39,7 +39,7 @@
     //self.tabBarController.navigationController in
     
     
-    self.navigationController = [[UINavigationController alloc]initWithRootViewController:_tabBarController];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:_tabBarController];
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     

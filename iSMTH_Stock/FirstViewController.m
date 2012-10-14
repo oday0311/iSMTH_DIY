@@ -44,10 +44,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    tableref.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
 	// Do any additional setup after loading the view, typically from a nib.
     //boardnamelist = [[NSArray alloc] initWithArray:[@"Stock",@"Express",nil]];
+     //self.navigationController.navigationItem.title = @"热门板块";
     
-    
+    //self.navigationController.navigationBar.
       
 }
 
