@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
 		623035F2150C397200DFE883 /* DocList.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F0150C397200DFE883 /* DocList.m */; };
 		623035F3150C397200DFE883 /* DocList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623035F1150C397200DFE883 /* DocList.xib */; };
 		623035F7150C399600DFE883 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F6150C399600DFE883 /* EGORefreshTableHeaderView.m */; };
@@ -95,6 +96,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
+		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		623035EF150C397200DFE883 /* DocList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocList.h; path = iSMTH_Stock/DocList.h; sourceTree = "<group>"; };
 		623035F0150C397200DFE883 /* DocList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocList.m; path = iSMTH_Stock/DocList.m; sourceTree = "<group>"; };
 		623035F1150C397200DFE883 /* DocList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocList.xib; path = iSMTH_Stock/DocList.xib; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 		628589A8156923E100FB5410 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				18CE5210162AEA490003FC41 /* UIGlossyButton.h */,
+				18CE5211162AEA490003FC41 /* UIGlossyButton.m */,
 				62780CCF154E680900A4AD5A /* ASIhttp */,
 				6285898D1569092200FB5410 /* WaterFlow */,
 				62780CBC154E314200A4AD5A /* NSString+PDRegex.h */,
@@ -607,6 +612,7 @@
 				628589991569095100FB5410 /* WaterflowView.m in Sources */,
 				628589A21569096800FB5410 /* LoadingMoreFooterView.m in Sources */,
 				628589A6156909E200FB5410 /* ViewController.m in Sources */,
+				18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

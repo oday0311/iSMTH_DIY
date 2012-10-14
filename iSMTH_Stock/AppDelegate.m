@@ -37,9 +37,22 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, viewController3,nil];
     self.window.rootViewController = self.tabBarController;
     //self.tabBarController.navigationController in
+    
+    
     self.navigationController = [[UINavigationController alloc]initWithRootViewController:_tabBarController];
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
+    
+    
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [UIColor colorWithRed:81/255.0 green:62/255.0 blue:65/255.0 alpha:1],UITextAttributeTextColor,
+                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,nil];
+    
+    
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:227/255.0 green:227/255.0 blue:223/255.0 alpha:1.0];
+    
     return YES;
 }
 

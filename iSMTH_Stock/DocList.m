@@ -8,7 +8,7 @@
 
 #import "DocList.h"
 #import "constant.h"
-
+#import "UIGlossyButton.h"
 #import  "topicDetailShow.h"
 @implementation DocList
 @synthesize tableref = _tableref;
@@ -90,14 +90,14 @@
     
     
     
-    if (_refreshHeaderView == nil) {
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableref.bounds.size.height, self.view.frame.size.width, self.tableref.bounds.size.height)];
-		view.delegate = self;
-		[self.tableref addSubview:view];
-		_refreshHeaderView = view;
-		//[view release];
-		
-	}
+//    if (_refreshHeaderView == nil) {
+//		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableref.bounds.size.height, self.view.frame.size.width, self.tableref.bounds.size.height)];
+//		view.delegate = self;
+//		[self.tableref addSubview:view];
+//		_refreshHeaderView = view;
+//		//[view release];
+//		
+//	}
 	//[self businessCardFresh];
 	//  update the last update date
 	//[_refreshHeaderView refreshLastUpdatedDate];
@@ -175,7 +175,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_refreshHeaderView  setState:EGOOPullRefreshLoading];
+    //[_refreshHeaderView  setState:EGOOPullRefreshLoading];
       
     [super viewDidAppear:animated];
 }
@@ -303,7 +303,7 @@
 	
 	//  model should call this when its done loading
 	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableref];
+	//[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableref];
 	
 }
 
@@ -311,12 +311,12 @@
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+	//[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	//[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
 }
 
@@ -341,6 +341,78 @@
 	
 	return [NSDate date]; // should return date data source was last changed
 	
+}
+
+
+
+
+
+
+/////////////////////////////////////////
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
+
+-(void)btnPressLast
+{
+    NSLog(@"btnPressLast begin ");
+      
+    
+}
+
+-(void)btnPressNext
+{
+    NSLog(@"btnPressNext begin ");
+    
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 40)];
+    customView.backgroundColor= [UIColor colorWithRed:189/255.0 green:197/255.0 blue:198/255.0 alpha:0.8];
+    {
+        
+        UIGNavigationButton *b;
+        
+        b = [[UIGNavigationButton alloc] initWithFrame:CGRectMake(20, 5, 80, 30)] ;
+        b.leftArrow = YES;
+        [b setNavigationButtonWithColor:[UIColor navigationBarButtonColor]];
+        
+        UILabel* textlabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 60, 30)];
+        textlabel.backgroundColor = [UIColor clearColor];
+        textlabel.textColor = [UIColor whiteColor];
+        textlabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:16];
+        textlabel.text =  @"上一页";
+        
+        [b addTarget:self action:@selector(btnPressLast) forControlEvents:UIControlEventTouchUpInside];
+        [b addSubview:textlabel];
+        [customView addSubview: b];
+        
+    }
+    
+    {
+        UIGNavigationButton *b;
+        
+        b = [[UIGNavigationButton alloc] initWithFrame:CGRectMake(220, 5, 80, 30)];
+        b.leftArrow = NO;
+        [b setNavigationButtonWithColor:[UIColor navigationBarButtonColor]];
+        
+        UILabel* textlabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 30)] ;
+        textlabel.backgroundColor = [UIColor clearColor];
+        textlabel.textColor = [UIColor whiteColor];
+        textlabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:16];
+        textlabel.text =  @"下一页";
+        
+        [b addTarget:self action:@selector(btnPressNext) forControlEvents:UIControlEventTouchUpInside];
+        [b addSubview:textlabel];
+        [customView addSubview: b];
+    }
+    
+       
+    
+    return customView;
 }
 
 

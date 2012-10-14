@@ -12,7 +12,7 @@
 #import "topic.h"
 @interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
 {
-    EGORefreshTableHeaderView *_refreshHeaderView;
+    //EGORefreshTableHeaderView *_refreshHeaderView;
     UITableView *_tableref;
      NSMutableArray *arrayList;
     
