@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
-    UITextView *textView;
+    //UITextView *textView;
     UINavigationController* nav;
     UITableView *tableref;
     
@@ -18,7 +18,6 @@
     NSArray* boardnamelist;
 }
 
-@property (strong, nonatomic) IBOutlet UITextView *textView;
 - (IBAction)getSignature:(id)sender;
 - (IBAction)getStockBoardlist:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableref;

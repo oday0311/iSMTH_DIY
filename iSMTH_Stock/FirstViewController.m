@@ -15,7 +15,6 @@
 
 @implementation FirstViewController
 @synthesize tableref;
-@synthesize textView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,17 +48,11 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-	// Do any additional setup after loading the view, typically from a nib.
-    //boardnamelist = [[NSArray alloc] initWithArray:[@"Stock",@"Express",nil]];
-     //self.navigationController.navigationItem.title = @"热门板块";
-    
-    //self.navigationController.navigationBar.
-      
+	  
 }
 
 - (void)viewDidUnload
 {
-    [self setTextView:nil];
     [self setTableref:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -121,21 +114,20 @@
         [DataSingleton singleton].finalstring= finalstring;
         
         
-        textView.text = signature;
+        //textView.text = signature;
     }
 
 }
 
 - (void)getStockBoardlist:(id)sender withInput:(NSString*)BASE_URL {
     
-    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-    NSString*signature = [httpclient httpSendRequest:BASE_URL];
-    int total_length = signature.length;
-    if (total_length > 10) {
-                
-        [DataSingleton singleton].stockBoardlist = signature;
-        textView.text = signature;
-    }
+//    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+//    NSString*signature = [httpclient httpSendRequest:BASE_URL];
+//    int total_length = signature.length;
+//    if (total_length > 10) {
+//                
+//        [DataSingleton singleton].stockBoardlist = signature;
+//    }
     UIViewController*
     viewController2 = [[DocList alloc] initWithNibName:@"DocList" bundle:nil];
     [self.navigationController pushViewController:viewController2 animated:YES];
@@ -176,7 +168,14 @@
    
     NSString* longUrl = [[[DataSingleton singleton] UserFavoriteListUrl] objectAtIndex:indexPath.row];
     NSString* fullUrl = [SMTH_BASE_URL stringByAppendingFormat:@"%@",longUrl];
-        [self getStockBoardlist:self withInput:fullUrl];
-   }
+    
+    [DataSingleton singleton].Selected_complete_url = fullUrl;
+    [self getStockBoardlist:self withInput:fullUrl];
+
+    
+
+    
+
+}
 
 @end

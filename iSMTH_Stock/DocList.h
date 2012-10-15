@@ -10,12 +10,14 @@
 #import "EGORefreshTableHeaderView.h"
 #import "DataSingleton.h"
 #import "topic.h"
-@interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
+#import "HttpClient.h"
+
+@interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource
+,HttpClientDelegate>
 {
     //EGORefreshTableHeaderView *_refreshHeaderView;
     UITableView *_tableref;
-     NSMutableArray *arrayList;
-    
+    NSMutableArray *arrayList;
     NSMutableArray *arrayList_link;
     
     
@@ -23,6 +25,10 @@
     
     
     DataSingleton* dataRecorder;
+    
+    
+    ///////////////////
+    HttpClient                      *httpClient;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableref;
 

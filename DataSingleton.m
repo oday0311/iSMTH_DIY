@@ -1,10 +1,4 @@
-//
-//  DataSingleton.m
-//  tableview
-//
-//  Created by Alex on 9/5/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+
 
 #import "DataSingleton.h"
 
@@ -15,6 +9,7 @@
 @synthesize searchBoardResults;
 @synthesize UserFavoriteListUrl;
 @synthesize UserFavoriteListName;
+@synthesize Selected_complete_url;
 
 static DataSingleton * MyCommon_Singleton = nil;
 
@@ -28,6 +23,9 @@ static DataSingleton * MyCommon_Singleton = nil;
         {
             MyCommon_Singleton=[[DataSingleton alloc] init] ;
             MyCommon_Singleton.finalstring = @"init";
+            MyCommon_Singleton.Selected_complete_url = @"";
+            
+            
             
             MyCommon_Singleton.searchBoardResults = [[NSMutableArray alloc] init];
             

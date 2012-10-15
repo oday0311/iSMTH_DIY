@@ -39,12 +39,17 @@
     ////////////////////////
     
     NSMutableArray* UserFavoriteListUrl;
-    
     NSMutableArray* UserFavoriteListName;
+    
+    ////////////////////////
+    NSString* Selected_complete_url;
     
 };
 
 + (DataSingleton *)singleton;
+
+
+@property(nonatomic,retain) NSString*Selected_complete_url;
 @property(nonatomic,retain) NSMutableArray*UserFavoriteListUrl;
 @property(nonatomic,retain) NSMutableArray*UserFavoriteListName;
 

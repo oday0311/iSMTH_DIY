@@ -1,10 +1,3 @@
-//
-//  HttpClinetUingASIhttp_getWeather.m
-//  Air_Reporter
-//
-//  Created by Alex on 4/20/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
 
 #import "HttpClinetUingASIhttp_summaryReport.h"
 

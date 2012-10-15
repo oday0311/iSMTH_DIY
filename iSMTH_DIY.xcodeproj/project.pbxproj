@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184C90E2162C47A600CF6CA5 /* HttpClientSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90E1162C47A600CF6CA5 /* HttpClientSampleViewController.m */; };
+		184C90E9162C47B600CF6CA5 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90E5162C47B600CF6CA5 /* HttpClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
+		184C90EA162C47B600CF6CA5 /* HttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90E8162C47B600CF6CA5 /* HttpConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
+		184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90EC162C486400CF6CA5 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
 		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
 		18CE5216162AEC000003FC41 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5214162AEC000003FC41 /* background.png */; };
 		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
@@ -98,6 +102,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184C90E0162C47A500CF6CA5 /* HttpClientSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClientSampleViewController.h; sourceTree = "<group>"; };
+		184C90E1162C47A600CF6CA5 /* HttpClientSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClientSampleViewController.m; sourceTree = "<group>"; };
+		184C90E4162C47B600CF6CA5 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
+		184C90E5162C47B600CF6CA5 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
+		184C90E6162C47B600CF6CA5 /* HttpClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClientDelegate.h; sourceTree = "<group>"; };
+		184C90E7162C47B600CF6CA5 /* HttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConnection.h; sourceTree = "<group>"; };
+		184C90E8162C47B600CF6CA5 /* HttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConnection.m; sourceTree = "<group>"; };
+		184C90EB162C486400CF6CA5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		184C90EC162C486400CF6CA5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		18CE5214162AEC000003FC41 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -438,6 +451,15 @@
 		628589A8156923E100FB5410 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				184C90EB162C486400CF6CA5 /* JSONKit.h */,
+				184C90EC162C486400CF6CA5 /* JSONKit.m */,
+				184C90E4162C47B600CF6CA5 /* HttpClient.h */,
+				184C90E5162C47B600CF6CA5 /* HttpClient.m */,
+				184C90E6162C47B600CF6CA5 /* HttpClientDelegate.h */,
+				184C90E7162C47B600CF6CA5 /* HttpConnection.h */,
+				184C90E8162C47B600CF6CA5 /* HttpConnection.m */,
+				184C90E0162C47A500CF6CA5 /* HttpClientSampleViewController.h */,
+				184C90E1162C47A600CF6CA5 /* HttpClientSampleViewController.m */,
 				18CE5210162AEA490003FC41 /* UIGlossyButton.h */,
 				18CE5211162AEA490003FC41 /* UIGlossyButton.m */,
 				62780CCF154E680900A4AD5A /* ASIhttp */,
@@ -621,6 +643,10 @@
 				628589A21569096800FB5410 /* LoadingMoreFooterView.m in Sources */,
 				628589A6156909E200FB5410 /* ViewController.m in Sources */,
 				18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */,
+				184C90E2162C47A600CF6CA5 /* HttpClientSampleViewController.m in Sources */,
+				184C90E9162C47B600CF6CA5 /* HttpClient.m in Sources */,
+				184C90EA162C47B600CF6CA5 /* HttpConnection.m in Sources */,
+				184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,24 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+-(void)doSuccess:(NSString *)dict
+{
+    NSLog(@"this is do success");
+    [DataSingleton singleton].stockBoardlist = dict;
+    [self getResultIntoTableData];
+    [self.tableref reloadData];
+}
+-(void)doFail:(NSString *)msg
+{
+    NSLog(@"this is do fail");
+}
+-(void)doNetWorkFail
+{
+    NSLog(@"This is NetWork fail");
+}
+
+
 -(NSString*) getSubString:(NSString*)inputString BeginString:(NSString*)string1 EndString:(NSString*)string2
 {
     
@@ -79,36 +97,8 @@
     return @"";
 }
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
+-(void)getResultIntoTableData
 {
-    [super viewDidLoad];
-    
-    
-    self.view.backgroundColor =  [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-    // Do any additional setup after loading the view from its nib.
-    
-     arrayList  = [[NSMutableArray alloc]  init];
-    arrayList_link = [[NSMutableArray alloc]  init];
-    
-    
-    
-//    if (_refreshHeaderView == nil) {
-//		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableref.bounds.size.height, self.view.frame.size.width, self.tableref.bounds.size.height)];
-//		view.delegate = self;
-//		[self.tableref addSubview:view];
-//		_refreshHeaderView = view;
-//		//[view release];
-//		
-//	}
-	//[self businessCardFresh];
-	//  update the last update date
-	//[_refreshHeaderView refreshLastUpdatedDate];
-    self.tableref.dataSource = self;
-    self.tableref.delegate = self;
-    
-    
-    
     dataRecorder = [DataSingleton singleton];
     
     NSString* postlist = dataRecorder.stockBoardlist;
@@ -122,7 +112,7 @@
             NSLog(@"this is a testing code for debug");
         }
         NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
-    
+        
         NSRange range1_isTop = NSMakeRange(0, 0);
         range1_isTop = [postlist rangeOfString:@"<tr class=\"top\""];
         NSRange range1_isTopOdd=NSMakeRange(0, 0);
@@ -133,7 +123,7 @@
         }
         
         NSString* substring_topic_writer = [self getSubString2_beginstringnotinclude:substring_topic BeginString:@"<td class=\"title_9\"><a href=" EndString:@"</a>"];
-       
+        
         NSRange range2= NSMakeRange(0, 0);
         range2 =[substring_topic_writer rangeOfString:@"\">"];
         if (range2.length == 0) {
@@ -165,29 +155,47 @@
         
         
         NSString* fowllowingList= [postlist substringFromIndex:containTopic.location + containTopic.length];
-
+        
         postlist = fowllowingList;
-                
+        
         
         
         containTopic = [fowllowingList rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
     }
     
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    
+    self.view.backgroundColor =  [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    // Do any additional setup after loading the view from its nib.
+    
+     arrayList  = [[NSMutableArray alloc]  init];
+    arrayList_link = [[NSMutableArray alloc]  init];
+    
+    
+    
+    self.tableref.dataSource = self;
+    self.tableref.delegate = self;
+    
+    dataRecorder = [DataSingleton singleton];
+    
+    
+    httpClient=[[HttpClient alloc] initWithDelegate:self];
+    [httpClient getDetailContentList:[DataSingleton singleton].Selected_complete_url];
     
     
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    //[_refreshHeaderView  setState:EGOOPullRefreshLoading];
-      
     [super viewDidAppear:animated];
 }
 - (void)viewDidUnload
 {
     [self setTableref:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
