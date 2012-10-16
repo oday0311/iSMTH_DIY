@@ -26,12 +26,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AppDelegate*appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
-    [appdelegate.navigationController popViewControllerAnimated:YES];
+    
+
+    //[self.navigationController popViewControllerAnimated:YES];
 
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    AppDelegate*appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

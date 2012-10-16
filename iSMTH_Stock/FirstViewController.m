@@ -12,7 +12,7 @@
 #import "constant.h"
 #import "SecondViewController.h"
 #import "DocList.h"
-
+#import "TempViewController.h"
 @implementation FirstViewController
 @synthesize tableref;
 
@@ -38,7 +38,11 @@
 #define SEARCH_STRING1 @" <h5 class=\"u-title\">个人说明档</h5>"
 #define SEARCH_STRING2 @"<span class=\"n-left\">"
 
-
+-(void)fixpack_for_ios6
+{
+    TempViewController*temp =[[TempViewController alloc] initWithNibName:@"TempViewController" bundle:nil];
+    [self.navigationController pushViewController:temp animated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -48,7 +52,8 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-	  
+
+    
 }
 
 - (void)viewDidUnload
@@ -64,10 +69,14 @@
     [super viewWillAppear:animated];
     [tableref reloadData];
 }
-
+static int firstTimeAppear = 1;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (firstTimeAppear==1) {
+        firstTimeAppear = 0;
+        [self fixpack_for_ios6];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
