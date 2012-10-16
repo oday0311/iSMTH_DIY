@@ -11,6 +11,8 @@
 		184C90E9162C47B600CF6CA5 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90E5162C47B600CF6CA5 /* HttpClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
 		184C90EA162C47B600CF6CA5 /* HttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90E8162C47B600CF6CA5 /* HttpConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
 		184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90EC162C486400CF6CA5 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
+		184CBC24162DA7960035F7EF /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CBC22162DA7960035F7EF /* TempViewController.m */; };
+		184CBC25162DA7960035F7EF /* TempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CBC23162DA7960035F7EF /* TempViewController.xib */; };
 		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
 		18CE5216162AEC000003FC41 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5214162AEC000003FC41 /* background.png */; };
 		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
@@ -111,6 +113,9 @@
 		184C90E8162C47B600CF6CA5 /* HttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConnection.m; sourceTree = "<group>"; };
 		184C90EB162C486400CF6CA5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		184C90EC162C486400CF6CA5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		184CBC21162DA7960035F7EF /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
+		184CBC22162DA7960035F7EF /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
+		184CBC23162DA7960035F7EF /* TempViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempViewController.xib; sourceTree = "<group>"; };
 		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		18CE5214162AEC000003FC41 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -334,6 +339,9 @@
 			children = (
 				624154EA150AFD9A00944D48 /* AppDelegate.h */,
 				624154EB150AFD9A00944D48 /* AppDelegate.m */,
+				184CBC21162DA7960035F7EF /* TempViewController.h */,
+				184CBC22162DA7960035F7EF /* TempViewController.m */,
+				184CBC23162DA7960035F7EF /* TempViewController.xib */,
 				628589A3156909E200FB5410 /* ViewController.h */,
 				628589A4156909E200FB5410 /* ViewController.m */,
 				628589A5156909E200FB5410 /* ViewController.xib */,
@@ -580,6 +588,7 @@
 				628589A7156909E200FB5410 /* ViewController.xib in Resources */,
 				18CE5216162AEC000003FC41 /* background.png in Resources */,
 				18CE5217162AEC000003FC41 /* background@2x.png in Resources */,
+				184CBC25162DA7960035F7EF /* TempViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +656,7 @@
 				184C90E9162C47B600CF6CA5 /* HttpClient.m in Sources */,
 				184C90EA162C47B600CF6CA5 /* HttpConnection.m in Sources */,
 				184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */,
+				184CBC24162DA7960035F7EF /* TempViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@
 
 #import "SecondViewController.h"
 #import "ViewController.h"
-
+#import "TempViewController.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -53,6 +53,8 @@
     self.navigationController.navigationBar.titleTextAttributes = dict;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:227/255.0 green:227/255.0 blue:223/255.0 alpha:1.0];
     
+   
+   
     return YES;
 }
 

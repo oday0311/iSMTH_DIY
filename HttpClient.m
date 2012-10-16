@@ -53,7 +53,7 @@
         params=[NSMutableDictionary dictionary];
     }
     NSString * encodedString = (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                                   (CFStringRef)[self getURL:url queryParameters:params],
+                                                                                   (CFStringRef)[self getURL:url queryParameters:nil],
                                                                                    NULL,
                                                                                    NULL,
                                                                                    kCFStringEncodingUTF8);
