@@ -1,24 +1,26 @@
 //
-//  TempViewController.m
+//  AppAboutViewController.m
 //  iSMTH_DIY
 //
-//  Created by Apple on 12-10-16.
+//  Created by Apple on 12-10-20.
 //
 //
 
-#import "TempViewController.h"
-#import "AppDelegate.h"
-@interface TempViewController ()
+#import "AppAboutViewController.h"
+
+@interface AppAboutViewController ()
 
 @end
 
-@implementation TempViewController
+@implementation AppAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = NSLocalizedString(@"关于", @"关于");
+        self.tabBarItem.image = [UIImage imageNamed:@"about"];
     }
     return self;
 }
@@ -26,18 +28,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-   
-
-    //[self.navigationController popViewControllerAnimated:YES];
-
+    
+    self.view.backgroundColor =[UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    AppDelegate*appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
-    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationItem.title = @"hi";
+    self.navigationController.navigationItem.title=@"hello";
+    
 }
 - (void)didReceiveMemoryWarning
 {

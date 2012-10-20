@@ -43,12 +43,13 @@
     
     ////////////////////////
     NSString* Selected_complete_url;
+    NSInteger selected_url_pageIndex;
     
 };
 
 + (DataSingleton *)singleton;
 
-
+@property(nonatomic,assign) NSInteger selected_url_pageIndex;
 @property(nonatomic,retain) NSString*Selected_complete_url;
 @property(nonatomic,retain) NSMutableArray*UserFavoriteListUrl;
 @property(nonatomic,retain) NSMutableArray*UserFavoriteListName;

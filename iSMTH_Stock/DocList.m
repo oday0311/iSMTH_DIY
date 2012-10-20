@@ -33,10 +33,12 @@
 
 -(void)doSuccess:(NSString *)dict
 {
+    [arrayList removeAllObjects];
     NSLog(@"this is do success");
     [DataSingleton singleton].stockBoardlist = dict;
     [self getResultIntoTableData];
     [self.tableref reloadData];
+    self.tableref.contentOffset = CGPointMake(0, 0);
 }
 -(void)doFail:(NSString *)msg
 {
@@ -169,8 +171,11 @@
     [super viewDidLoad];
     
     
-    self.view.backgroundColor =  [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    self.tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    self.tableref.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+
     
      arrayList  = [[NSMutableArray alloc]  init];
     arrayList_link = [[NSMutableArray alloc]  init];
@@ -369,13 +374,39 @@
 {
     NSLog(@"btnPressLast begin ");
       
+    dataRecorder = [DataSingleton singleton];
     
+    
+    httpClient=[[HttpClient alloc] initWithDelegate:self];
+    dataRecorder.selected_url_pageIndex--;
+    int index = dataRecorder.selected_url_pageIndex;
+    
+    if (index<1) {
+        dataRecorder.selected_url_pageIndex = 1;
+        index = 1;
+    }
+    
+    NSLog(@"The page index is %d", index);
+    NSString*urlWithIndex = [@"" stringByAppendingFormat:@"%@?p=%d",dataRecorder.Selected_complete_url, index];
+    
+    
+    [httpClient getDetailContentList:urlWithIndex];
 }
 
 -(void)btnPressNext
 {
     NSLog(@"btnPressNext begin ");
+    dataRecorder = [DataSingleton singleton];
     
+    
+    httpClient=[[HttpClient alloc] initWithDelegate:self];
+    dataRecorder.selected_url_pageIndex++;
+    int index = dataRecorder.selected_url_pageIndex;
+    NSString*urlWithIndex = [@"" stringByAppendingFormat:@"%@?p=%d",dataRecorder.Selected_complete_url, index];
+    
+    
+    NSLog(@"The page index is %d", index);
+    [httpClient getDetailContentList:urlWithIndex];
     
 }
 

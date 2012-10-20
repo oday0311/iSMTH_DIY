@@ -10,6 +10,8 @@
 @synthesize UserFavoriteListUrl;
 @synthesize UserFavoriteListName;
 @synthesize Selected_complete_url;
+@synthesize selected_url_pageIndex;
+
 
 static DataSingleton * MyCommon_Singleton = nil;
 
@@ -25,7 +27,7 @@ static DataSingleton * MyCommon_Singleton = nil;
             MyCommon_Singleton.finalstring = @"init";
             MyCommon_Singleton.Selected_complete_url = @"";
             
-            
+            MyCommon_Singleton.selected_url_pageIndex = 1;
             
             MyCommon_Singleton.searchBoardResults = [[NSMutableArray alloc] init];
             

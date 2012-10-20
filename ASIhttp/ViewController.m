@@ -19,6 +19,16 @@
 @implementation ViewController
 @synthesize imageUrls=_imageUrls;
 @synthesize currentPage=_currentPage;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        self.title = NSLocalizedString(@"图片", @"图片");
+        self.tabBarItem.image = [UIImage imageNamed:@"third"];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -46,6 +56,8 @@
                       @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
                       
                       nil];
+    
+  
 }
 
 - (void)dealloc

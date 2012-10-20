@@ -13,6 +13,12 @@
 		184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C90EC162C486400CF6CA5 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc "; }; };
 		184CBC24162DA7960035F7EF /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CBC22162DA7960035F7EF /* TempViewController.m */; };
 		184CBC25162DA7960035F7EF /* TempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CBC23162DA7960035F7EF /* TempViewController.xib */; };
+		188658CB1632717A00798C91 /* AppAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188658C91632717A00798C91 /* AppAboutViewController.m */; };
+		188658CC1632717A00798C91 /* AppAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188658CA1632717A00798C91 /* AppAboutViewController.xib */; };
+		188658D41632864200798C91 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D21632864200798C91 /* about.png */; };
+		188658D51632864200798C91 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D31632864200798C91 /* about@2x.png */; };
+		188658D81632A98A00798C91 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D61632A98A00798C91 /* third.png */; };
+		188658D91632A98A00798C91 /* third@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D71632A98A00798C91 /* third@2x.png */; };
 		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
 		18CE5216162AEC000003FC41 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5214162AEC000003FC41 /* background.png */; };
 		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
@@ -116,6 +122,13 @@
 		184CBC21162DA7960035F7EF /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
 		184CBC22162DA7960035F7EF /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
 		184CBC23162DA7960035F7EF /* TempViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempViewController.xib; sourceTree = "<group>"; };
+		188658C81632717A00798C91 /* AppAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAboutViewController.h; sourceTree = "<group>"; };
+		188658C91632717A00798C91 /* AppAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAboutViewController.m; sourceTree = "<group>"; };
+		188658CA1632717A00798C91 /* AppAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppAboutViewController.xib; sourceTree = "<group>"; };
+		188658D21632864200798C91 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		188658D31632864200798C91 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
+		188658D61632A98A00798C91 /* third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third.png; sourceTree = "<group>"; };
+		188658D71632A98A00798C91 /* third@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "third@2x.png"; sourceTree = "<group>"; };
 		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		18CE5214162AEC000003FC41 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -265,6 +278,10 @@
 		62303652150CEC9600DFE883 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				188658D61632A98A00798C91 /* third.png */,
+				188658D71632A98A00798C91 /* third@2x.png */,
+				188658D21632864200798C91 /* about.png */,
+				188658D31632864200798C91 /* about@2x.png */,
 				18CE5214162AEC000003FC41 /* background.png */,
 				18CE5215162AEC000003FC41 /* background@2x.png */,
 				623035F8150C39C700DFE883 /* blueArrow.png */,
@@ -342,9 +359,6 @@
 				184CBC21162DA7960035F7EF /* TempViewController.h */,
 				184CBC22162DA7960035F7EF /* TempViewController.m */,
 				184CBC23162DA7960035F7EF /* TempViewController.xib */,
-				628589A3156909E200FB5410 /* ViewController.h */,
-				628589A4156909E200FB5410 /* ViewController.m */,
-				628589A5156909E200FB5410 /* ViewController.xib */,
 				624154ED150AFD9A00944D48 /* FirstViewController.h */,
 				624154EE150AFD9A00944D48 /* FirstViewController.m */,
 				624154FB150AFD9A00944D48 /* FirstViewController_iPhone.xib */,
@@ -353,6 +367,12 @@
 				624154F5150AFD9A00944D48 /* SecondViewController.m */,
 				62415501150AFD9A00944D48 /* SecondViewController_iPhone.xib */,
 				62415504150AFD9A00944D48 /* SecondViewController_iPad.xib */,
+				628589A3156909E200FB5410 /* ViewController.h */,
+				628589A4156909E200FB5410 /* ViewController.m */,
+				628589A5156909E200FB5410 /* ViewController.xib */,
+				188658C81632717A00798C91 /* AppAboutViewController.h */,
+				188658C91632717A00798C91 /* AppAboutViewController.m */,
+				188658CA1632717A00798C91 /* AppAboutViewController.xib */,
 				624154E2150AFD9A00944D48 /* Supporting Files */,
 			);
 			path = iSMTH_Stock;
@@ -589,6 +609,11 @@
 				18CE5216162AEC000003FC41 /* background.png in Resources */,
 				18CE5217162AEC000003FC41 /* background@2x.png in Resources */,
 				184CBC25162DA7960035F7EF /* TempViewController.xib in Resources */,
+				188658CC1632717A00798C91 /* AppAboutViewController.xib in Resources */,
+				188658D41632864200798C91 /* about.png in Resources */,
+				188658D51632864200798C91 /* about@2x.png in Resources */,
+				188658D81632A98A00798C91 /* third.png in Resources */,
+				188658D91632A98A00798C91 /* third@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +682,7 @@
 				184C90EA162C47B600CF6CA5 /* HttpConnection.m in Sources */,
 				184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */,
 				184CBC24162DA7960035F7EF /* TempViewController.m in Sources */,
+				188658CB1632717A00798C91 /* AppAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
