@@ -23,6 +23,7 @@
 -(void)getDetailContentList:(NSString*)url;
 
 
+-(void)getBtsmthContentList:(NSString*)url;
 
 
 @end

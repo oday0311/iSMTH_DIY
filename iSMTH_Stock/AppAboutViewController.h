@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AppAboutViewController : UIViewController
+{
+    
+}
+@property (unsafe_unretained, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

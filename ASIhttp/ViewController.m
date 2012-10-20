@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 #import "AsyncImageView.h"
+#import "NSString+PDRegex.h"
 
 #define NUMBER_OF_COLUMNS 3
 
@@ -19,6 +20,9 @@
 @implementation ViewController
 @synthesize imageUrls=_imageUrls;
 @synthesize currentPage=_currentPage;
+@synthesize matchDictionary;
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,34 +33,62 @@
     }
     return self;
 }
-
+-(void)startGetbtsmthPicture
+{
+    httpClient=[[HttpClient alloc] initWithDelegate:self];
+    [httpClient getBtsmthContentList:@"http://www.btsmth.com/show_all_pic_articles.php"];
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentPage = 1;
+    
+    self.imageUrls = [[[NSMutableArray alloc] initWithObjects:
+                       
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       @"http://www.btsmth.com/attachments/953.10364306.297.jpg",
+                       
+                       nil] autorelease];
+    
+    {
+        matchDictionary = [[[NSMutableDictionary alloc] init] autorelease];
+        [matchDictionary setObject:@"FamilyLife" forKey:@"9"];
+        [matchDictionary setObject:@"" forKey:@"65"];
+        [matchDictionary setObject:@"Beauty" forKey:@"135"];
+        [matchDictionary setObject:@"DSLR" forKey:@"179"];
+        [matchDictionary setObject:@"EconForum" forKey:@"225"];
+        [matchDictionary setObject:@"" forKey:@"387"];
+        [matchDictionary setObject:@"PieLife" forKey:@"398"];
+        [matchDictionary setObject:@"Age" forKey:@"953"];
+        [matchDictionary setObject:@"Elite" forKey:@"956"];
+        [matchDictionary setObject:@"MyPhoto" forKey:@"874"];
+        [matchDictionary setObject:@"OurEstate" forKey:@"1030"];
+        [matchDictionary setObject:@"Diablo" forKey:@"1298"];
+        [matchDictionary setObject:@"Picture" forKey:@"1349"];
+
+        
+        
+    }
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.    
     flowView = [[WaterflowView alloc] initWithFrame:self.view.frame];
     flowView.flowdatasource = self;
     flowView.flowdelegate = self;
     [self.view addSubview:flowView];
     
-    self.currentPage = 1;
     
-    self.imageUrls = [NSMutableArray array];
-    self.imageUrls = [NSArray arrayWithObjects:
-                                          
-                      @"http://att.newsmth.net/nForum/att/Picture/854078/214",
-                      @"http://att.newsmth.net/nForum/att/Picture/853853/10192",
-                      @"http://www.btsmth.com/attachments/1029.1036213.673.jpg",
-                      
-                      @"http://www.btsmth.com/attachments/398.1915241.1097.jpg",
-                      @"http://www.btsmth.com/attachments/874.1828644.803.jpg",
-                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
-                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
-                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
-                      @"http://www.btsmth.com/attachments/953.9248159.271.jpg",
-                      
-                      nil];
     
+    
+    [self startGetbtsmthPicture];
   
 }
 
@@ -92,11 +124,13 @@
 
 - (NSInteger)flowView:(WaterflowView *)flowView numberOfRowsInColumn:(NSInteger)column
 {
-    return 6;
+    return [self.imageUrls count]/NUMBER_OF_COLUMNS;
 }
 
 - (WaterFlowCell *)flowView:(WaterflowView *)flowView_ cellForRowAtIndex:(NSInteger)index
 {
+    
+    NSLog(@"this is called");
     static NSString *CellIdentifier = @"Cell";
 	WaterFlowCell *cell = [flowView_ dequeueReusableCellWithIdentifier:CellIdentifier];
 	
@@ -118,7 +152,7 @@
     AsyncImageView *imageView  = (AsyncImageView *)[cell viewWithTag:1001];
 	imageView.frame = CGRectMake(0, 0, self.view.frame.size.width / NUMBER_OF_COLUMNS, height);
     
-    [imageView loadImage:[self.imageUrls objectAtIndex:index % 5]];
+    [imageView loadImage:[self.imageUrls objectAtIndex:index ]];
 	
 	return cell;
     
@@ -126,6 +160,8 @@
 
 - (WaterFlowCell*)flowView:(WaterflowView *)flowView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"the indexpath is section , row: , %d, %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"Cell";
 	WaterFlowCell *cell = [flowView_ dequeueReusableCellWithIdentifier:CellIdentifier];
 	
@@ -146,7 +182,10 @@
 	
 	AsyncImageView *imageView  = (AsyncImageView *)[cell viewWithTag:1001];
 	imageView.frame = CGRectMake(0, 0, self.view.frame.size.width / 3, height);
-    [imageView loadImage:[self.imageUrls objectAtIndex:(indexPath.row + indexPath.section) % 5]];
+    
+    
+    int imageIndex = (indexPath.section*NUMBER_OF_COLUMNS+indexPath.row ) % self.imageUrls.count;
+    [imageView loadImage:[self.imageUrls objectAtIndex: imageIndex ]];
 	
 	return cell;
     
@@ -232,4 +271,71 @@
     [flowView reloadData];
 }
 
+
+
+/////transfer the btsmth url to newsmth picurl
+///   http://att.newsmth.net/nForum/att/Picture/77274/551/small
+
+
+-(NSString*)urltransfer:(NSString*)btsmthpictureurl
+{
+    
+    ////Input sample: 953.10366646.1176
+    NSArray*  btsmthModulePart = [btsmthpictureurl componentsSeparatedByString:@"."];
+    if (btsmthModulePart.count !=3) {
+        return @"";
+    }
+    
+    NSString* newsmthbaseUrl = @"http://att.newsmth.net/nForum/att/";
+    
+    NSString*modulestring = [matchDictionary valueForKey:[btsmthModulePart objectAtIndex:0]];
+    if (modulestring.length < 2) {
+        return @"";
+    }
+    
+    newsmthbaseUrl = [@"" stringByAppendingFormat:@"%@%@/%@/%@/small", newsmthbaseUrl,modulestring,[btsmthModulePart objectAtIndex:1], [btsmthModulePart objectAtIndex:2]];
+    
+    return newsmthbaseUrl;
+}
+
+-(void)getPicturesUrl:(NSString*)resultstring
+{
+      ////<img src="attachments/953.10366646.1176.jpg"
+    [self.imageUrls removeAllObjects];
+    resultstring = [resultstring stringByReplacingRegexPattern:@"width=" withString:@"\n"];
+    NSArray *matches_name = [resultstring stringsByExtractingGroupsUsingRegexPattern:@"src=\"attachments/(.*).jpg"];
+    
+    for (int i = 0; i<matches_name.count; i++) {
+        NSString* tempstring = [matches_name objectAtIndex:i];
+        NSLog(@"the picture url : %@", tempstring);
+        
+        
+        NSString* myStringUrl = [self urltransfer:tempstring];
+        if (myStringUrl.length >= 2) {
+            ///add to the list.
+            NSLog(@"the newsmth url is : %@", myStringUrl);
+            [self.imageUrls addObject:myStringUrl];
+        }
+        
+    }
+    
+    NSLog(@"the valid picture url count is %d", self.imageUrls.count);
+    
+}
+///////////////////////////////////////////
+-(void)doSuccess:(NSString *)dict
+{
+    //NSLog(@"The return string is %@", dict);
+    
+    [self getPicturesUrl:dict];
+    [flowView reloadData];
+}
+-(void)doFail:(NSString *)msg
+{
+    NSLog(@"this is do fail");
+}
+-(void)doNetWorkFail
+{
+    NSLog(@"This is NetWork fail");
+}
 @end

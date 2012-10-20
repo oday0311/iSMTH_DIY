@@ -19,6 +19,7 @@
 		188658D51632864200798C91 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D31632864200798C91 /* about@2x.png */; };
 		188658D81632A98A00798C91 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D61632A98A00798C91 /* third.png */; };
 		188658D91632A98A00798C91 /* third@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188658D71632A98A00798C91 /* third@2x.png */; };
+		1886592C1632D4D800798C91 /* imageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1886592B1632D4D800798C91 /* imageCacheManager.m */; };
 		18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE5211162AEA490003FC41 /* UIGlossyButton.m */; };
 		18CE5216162AEC000003FC41 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5214162AEC000003FC41 /* background.png */; };
 		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
@@ -129,13 +130,15 @@
 		188658D31632864200798C91 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		188658D61632A98A00798C91 /* third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third.png; sourceTree = "<group>"; };
 		188658D71632A98A00798C91 /* third@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "third@2x.png"; sourceTree = "<group>"; };
+		1886592A1632D4D800798C91 /* imageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imageCacheManager.h; sourceTree = "<group>"; };
+		1886592B1632D4D800798C91 /* imageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = imageCacheManager.m; sourceTree = "<group>"; };
 		18CE5210162AEA490003FC41 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		18CE5211162AEA490003FC41 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		18CE5214162AEC000003FC41 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		18CE5215162AEC000003FC41 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
-		623035EF150C397200DFE883 /* DocList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocList.h; path = iSMTH_Stock/DocList.h; sourceTree = "<group>"; };
-		623035F0150C397200DFE883 /* DocList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocList.m; path = iSMTH_Stock/DocList.m; sourceTree = "<group>"; };
-		623035F1150C397200DFE883 /* DocList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocList.xib; path = iSMTH_Stock/DocList.xib; sourceTree = "<group>"; };
+		623035EF150C397200DFE883 /* DocList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocList.h; sourceTree = "<group>"; };
+		623035F0150C397200DFE883 /* DocList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocList.m; sourceTree = "<group>"; };
+		623035F1150C397200DFE883 /* DocList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocList.xib; sourceTree = "<group>"; };
 		623035F5150C399600DFE883 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		623035F6150C399600DFE883 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		623035F8150C39C700DFE883 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -367,6 +370,9 @@
 				624154F5150AFD9A00944D48 /* SecondViewController.m */,
 				62415501150AFD9A00944D48 /* SecondViewController_iPhone.xib */,
 				62415504150AFD9A00944D48 /* SecondViewController_iPad.xib */,
+				623035EF150C397200DFE883 /* DocList.h */,
+				623035F0150C397200DFE883 /* DocList.m */,
+				623035F1150C397200DFE883 /* DocList.xib */,
 				628589A3156909E200FB5410 /* ViewController.h */,
 				628589A4156909E200FB5410 /* ViewController.m */,
 				628589A5156909E200FB5410 /* ViewController.xib */,
@@ -413,9 +419,6 @@
 			children = (
 				62303612150CB2DC00DFE883 /* topic.h */,
 				62303613150CB2DC00DFE883 /* topic.m */,
-				623035EF150C397200DFE883 /* DocList.h */,
-				623035F0150C397200DFE883 /* DocList.m */,
-				623035F1150C397200DFE883 /* DocList.xib */,
 				6230360C150C999300DFE883 /* topicDetailShow.h */,
 				6230360D150C999300DFE883 /* topicDetailShow.m */,
 				6230360E150C999300DFE883 /* topicDetailShow.xib */,
@@ -479,6 +482,8 @@
 		628589A8156923E100FB5410 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				1886592A1632D4D800798C91 /* imageCacheManager.h */,
+				1886592B1632D4D800798C91 /* imageCacheManager.m */,
 				184C90EB162C486400CF6CA5 /* JSONKit.h */,
 				184C90EC162C486400CF6CA5 /* JSONKit.m */,
 				184C90E4162C47B600CF6CA5 /* HttpClient.h */,
@@ -683,6 +688,7 @@
 				184C90ED162C486400CF6CA5 /* JSONKit.m in Sources */,
 				184CBC24162DA7960035F7EF /* TempViewController.m in Sources */,
 				188658CB1632717A00798C91 /* AppAboutViewController.m in Sources */,
+				1886592C1632D4D800798C91 /* imageCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,7 +816,7 @@
 				GCC_PREFIX_HEADER = "iSMTH_Stock/iSMTH_DIY-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "iSMTH_Stock/iSMTH_DIY-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iSMTH_DIY;
 				WRAPPER_EXTENSION = app;
 			};
@@ -823,7 +829,7 @@
 				GCC_PREFIX_HEADER = "iSMTH_Stock/iSMTH_DIY-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "iSMTH_Stock/iSMTH_DIY-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iSMTH_DIY;
 				WRAPPER_EXTENSION = app;
 			};
