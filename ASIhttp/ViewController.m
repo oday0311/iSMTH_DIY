@@ -39,6 +39,20 @@
     [httpClient getBtsmthContentList:@"http://www.btsmth.com/show_all_pic_articles.php"];
     
 }
+
+-(void)startThreadWork_getBtSmthPitures
+{
+    dispatch_queue_t downloadQueue = dispatch_queue_create("get private message queue", NULL);
+    dispatch_async(downloadQueue, ^{
+        [self startGetbtsmthPicture];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //update the UI in main queue;
+        }); });
+    dispatch_release(downloadQueue); //won’t actually go away until queue is empty
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -88,8 +102,9 @@
     
     
     
+    //[self startThreadWork_getBtSmthPitures];
+    //
     [self startGetbtsmthPicture];
-  
 }
 
 - (void)dealloc

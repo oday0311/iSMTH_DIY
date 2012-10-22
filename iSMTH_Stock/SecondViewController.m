@@ -117,6 +117,25 @@
     
     [self.navigationController.navigationBar addSubview:mysearchBar];
 }
+-(void)randSearch:(NSString*)inputstring
+{
+    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+    NSString* searchReturns = [httpclient httpSendSearchRequest:inputstring];
+    [self getSearchResult:searchReturns];
+}
+
+-(void)startThreadWork_getRandSearchResults:(NSString*)inputstring
+{
+    dispatch_queue_t downloadQueue = dispatch_queue_create("get private message queue", NULL);
+    dispatch_async(downloadQueue, ^{
+        [self randSearch:inputstring];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //update the UI in main queue;
+        }); });
+    dispatch_release(downloadQueue); //won’t actually go away until queue is empty
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -127,7 +146,9 @@
     tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     
     //[self loadHtml];
-     
+    
+       
+    
 
 }
 - (void)viewDidUnload
@@ -152,6 +173,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    srand((unsigned)time(0));
+    int randint = rand()%26;
+    char c = 'a'+ randint;
+    NSString* randstring = [@"" stringByAppendingFormat:@"%c",c];
+    
+    [self startThreadWork_getRandSearchResults:randstring];
+    
+    
+
 }
 
 
@@ -257,6 +287,8 @@
 //<tr><td class="title_1"><a href="/nForum/board/Programming">编程技术</a><br />Programming</td><td class="title_2">
 -(void)getSearchResult:(NSString*)inputstring
 {
+    [tableref setContentOffset:CGPointMake(0, 0)];
+    [[DataSingleton singleton].searchBoardResults removeAllObjects];
     [searchResult removeAllObjects];
     inputstring = [inputstring stringByReplacingRegexPattern:@"<td class=\"title_3\"><" withString:@"\n"];
     

@@ -47,12 +47,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASIhttp/ViewController.m"
-         timestampString = "372444178.849494"
+         timestampString = "372611338.725189"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308"
-         landmarkName = "-getPicturesUrl:"
+         startingLineNumber = "309"
+         endingLineNumber = "309"
+         landmarkName = "-urltransfer:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -60,12 +60,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASIhttp/ViewController.m"
-         timestampString = "372442927.866583"
+         timestampString = "372611338.725189"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
-         landmarkName = "-flowView:numberOfRowsInColumn:"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
+         landmarkName = "-shouldAutorotateToInterfaceOrientation:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
