@@ -39,7 +39,10 @@
 -(void)startGetbtsmthPicture
 {
     httpClient=[[HttpClient alloc] initWithDelegate:self];
-    [httpClient getBtsmthContentList:@"http://easynote.sinaapp.com/ismth/getcontent.php"];
+    //[httpClient getBtsmthContentList:@"http://easynote.sinaapp.com/ismth/getcontent.php"];
+    
+    
+    [httpClient getBtsmthContentList:@"http://www.btsmth.com/show_all_pic_articles.php"];
     
 }
 
