@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import "DataSingleton.h"
 #import "NSString+PDRegex.h"
+#import "DocList.h"
 
 @implementation SecondViewController
 @synthesize tableref;
@@ -32,63 +33,22 @@
 
 #pragma mark - View lifecycle
 
-
-
-
-- (void)checkResourceFile:(NSString *)_filename {
-//	NSString *htmlCachePath = [PathHelper cacheDirectoryPathWithName:@"html"];
-//	NSString *filePath = [htmlCachePath stringByAppendingPathComponent:_filename];
-//	NSFileManager* fm = [NSFileManager defaultManager];
-//	if (![fm fileExistsAtPath:filePath]) {
-//		NSString *path = [[[NSBundle mainBundle] resourcePath] 
-//						  stringByAppendingPathComponent:_filename];
-//		NSData *filedata = [NSData dataWithContentsOfFile: path];
-//		if (filedata) {
-//			[fm createFileAtPath:filePath contents:filedata attributes:nil];
-//		}
-//	}
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
-- (void)checkResourceFiles {
-//	[self checkResourceFile:@"jquery.js"];
-//	[self checkResourceFile:@"tweet_details.js"];
-//	[self checkResourceFile:@"tweet_details.css"];	
-//	[self checkResourceFile:@"miniretweet@2x.png"];
-//	[self checkResourceFile:@"mini-reply@2x.png"];
-//	[self checkResourceFile:@"verified@2x.png"];
-    
 
-}
-- (void)loadHtml {
+-(void)addMBProgressHud
+{
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
     
-    NSLog(@"try to load signatur");
-	//webView.hidden = YES;
-//	NSString *html = [self generateTweetHtml];
-//	//NSString *path = [[NSBundle mainBundle] bundlePath];
-//	[self checkResourceFiles];
-//	NSString *htmlCachePath = [PathHelper cacheDirectoryPathWithName:@"html"];
-//	NSURL *baseURL = [NSURL fileURLWithPath:htmlCachePath];
-//	[webView loadHTMLString:html baseURL:baseURL];
+    HUD.delegate = self;
+    HUD.labelText = @"加载中";
+    [HUD showWhileExecuting:@selector(getDynamic_Fresh) onTarget:self withObject:nil animated:YES];
     
     
     
-    
-    NSMutableString *html = [NSMutableString string];
-	[html appendString:@"<html>"];
-	[html appendString:@"<head>"];
-	[html appendString:@"</head>"];
-	
-    
-    [html appendString:[DataSingleton singleton].finalstring];
-    
-    
-    [html appendString:@"</body></html>"];
-    
-    
-    [webview loadHTMLString:html baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    
-    
-  
-
 }
 
 -(void)addSearchBar
@@ -126,12 +86,23 @@
 
 -(void)startThreadWork_getRandSearchResults:(NSString*)inputstring
 {
+    {
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        
+        HUD.delegate = self;
+        HUD.labelText = @"加载中";
+        [HUD show:YES];
+    }
     dispatch_queue_t downloadQueue = dispatch_queue_create("get private message queue", NULL);
+    
     dispatch_async(downloadQueue, ^{
         [self randSearch:inputstring];
         dispatch_async(dispatch_get_main_queue(), ^{
             //update the UI in main queue;
-        }); });
+            //[HUD removeFromSuperViewOnHide];
+            [HUD setHidden:YES];
+            }); });
     dispatch_release(downloadQueue); //won’t actually go away until queue is empty
     
 }
@@ -170,17 +141,52 @@
     [self addSearchBar];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)httpStartBoardsearchAtRandom
 {
-    [super viewDidAppear:animated];
+    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
     srand((unsigned)time(0));
     int randint = rand()%26;
     char c = 'a'+ randint;
     NSString* randstring = [@"" stringByAppendingFormat:@"%c",c];
     
-    [self startThreadWork_getRandSearchResults:randstring];
+    NSString* searchBoardResult = [httpclient httpSendSearchRequest:randstring];
+    [self getSearchResult:searchBoardResult];
+    
+}
+
+-(void)searchwithMBprogressBarAtRandom
+{
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"加载中";
+    [HUD showWhileExecuting:@selector(httpStartBoardsearchAtRandom) onTarget:self withObject:nil animated:YES];
     
     
+}
+
+
+static int randomSearch = 1;
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.navigationController.navigationBar.topItem.title = @"板块搜索";
+
+    if (randomSearch == 1) {
+        randomSearch = 0;
+        
+        [self searchwithMBprogressBarAtRandom];
+        
+        //[self startThreadWork_getRandSearchResults:randstring];
+        
+        
+        
+
+    }
+   [self.navigationController.navigationBar addSubview:mysearchBar];
+
 
 }
 
@@ -216,15 +222,37 @@
     searchBar.text = @"";
      [searchBar resignFirstResponder];
 }
+
+
+-(void)httpStartBoardsearch
+{
+    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
+    
+    
+    NSString* searchBoardResult = [httpclient httpSendSearchRequest:mysearchBar.text];
+    [self getSearchResult:searchBoardResult];
+    
+}
+
+-(void)seachwithMBprogressBar
+{
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"加载中";
+    [HUD showWhileExecuting:@selector(httpStartBoardsearch) onTarget:self withObject:nil animated:YES];
+    
+
+}
+
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSLog(@"Search Button Clicked");
-    
-    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-    NSString* searchResult = [httpclient httpSendSearchRequest:searchBar.text];
-    [self getSearchResult:searchResult];
-    [searchBar resignFirstResponder];
-    
+    [self seachwithMBprogressBar];
+    [mysearchBar resignFirstResponder];
+
 }
 
 
@@ -254,32 +282,9 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    /////insert the search result to datarecord/////
-    //name and url
-    DataSingleton* dataRecord= [DataSingleton singleton];    
-     [dataRecord.UserFavoriteListName addObject: [[DataSingleton singleton].searchBoardResults objectAtIndex:indexPath.row]];
-    
-    
-    ///add url ;
-    [searchResult objectAtIndex:indexPath.row];
-    [dataRecord.UserFavoriteListUrl addObject:    [searchResult objectAtIndex:indexPath.row]];
-    
-}
 
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
-}
 
 
 
@@ -296,29 +301,89 @@
                                                                caseInsensitive:NO treatAsOneLine:NO];
     
     DataSingleton* dataRecorder = [DataSingleton singleton];
+    
     for (int i = 0 ; i<[matches count]; i++) {
         
-        NSString* temp = [matches objectAtIndex:i];
-        NSArray* boardname = [temp stringsByExtractingGroupsUsingRegexPattern:@"<a href=\"/nForum/board/(.*)\">"];
+               NSString* temp = [matches objectAtIndex:i];
         
+        NSArray* boardname = [temp stringsByExtractingGroupsUsingRegexPattern:@"<a href=\"/nForum/board/(.*)\">"];
+        if (boardname.count==0) {
+            continue;
+        }
         NSString* boardshortUrl =[boardname objectAtIndex:0];
         NSString* boardlongurl = [@"" stringByAppendingFormat:@"nForum/board/%@", boardshortUrl];
         NSLog(@"board url link is %@",boardlongurl);
       
-        [searchResult addObject:boardlongurl];
+        
         
         //remove additional tags
         temp = [temp stringByReplacingRegexPattern:@"<.*\">" withString:@""];
         temp = [temp stringByReplacingRegexPattern:@"<[a-z /]{1,6}>" withString:@" "];
         
-        
-        [dataRecorder.searchBoardResults insertObject:temp atIndex:i];
-        
-    }
+        if (matches.count > 40) {
+            ///if the search result list is too long, random to disgard.
+            srand((unsigned)time(0));
+            int randint = rand()%10;
+            if (randint > 3) {
+                [dataRecorder.searchBoardResults addObject:temp];
+                [searchResult addObject:boardlongurl];
+            }
+        }
+        else{
+            [dataRecorder.searchBoardResults addObject:temp ];
+            [searchResult addObject:boardlongurl];
+        }
     
+    }
+    NSLog(@"THE search board results length is %d", dataRecorder.searchBoardResults.count);
     [tableref reloadData];
     return ;
     
 }
+
+- (void)getStockBoardlist:(id)sender withInput:(NSString*)BASE_URL {
+    
+ 
+    UIViewController*
+    viewController2 = [[DocList alloc] initWithNibName:@"DocList" bundle:nil];
+    [DataSingleton singleton].DocListFirstload = 1;
+    [self.navigationController pushViewController:viewController2 animated:YES];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    /////insert the search result to datarecord/////
+    //name and url
+    DataSingleton* dataRecord= [DataSingleton singleton];
+    
+    
+    
+    NSString* favoriteListnameString = [[DataSingleton singleton].searchBoardResults objectAtIndex:indexPath.row];
+    [dataRecord.UserFavoriteListName addObject: favoriteListnameString];
+    
+    
+    ///add url ;
+    [searchResult objectAtIndex:indexPath.row];
+    [dataRecord.UserFavoriteListUrl addObject:    [searchResult objectAtIndex:indexPath.row]];
+    
+    
+    
+    NSString* longUrl = [searchResult objectAtIndex:indexPath.row];
+    NSString* fullUrl = [SMTH_BASE_URL stringByAppendingFormat:@"%@",longUrl];
+    
+    [DataSingleton singleton].Selected_complete_url = fullUrl;
+    [DataSingleton singleton].selected_topic_title = favoriteListnameString;
+    [self getStockBoardlist:self withInput:fullUrl];
+    
+
+    [constant addDataToPlist:favoriteListnameString content:longUrl];
+    
+    
+}
+
+
+
 
 @end

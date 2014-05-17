@@ -11,8 +11,10 @@
 #import "DataSingleton.h"
 #import "topic.h"
 #import "HttpClient.h"
+#import "MBProgressHUD.h"
 
-@interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource
+@interface DocList : UIViewController<EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource,
+MBProgressHUDDelegate
 ,HttpClientDelegate>
 {
     //EGORefreshTableHeaderView *_refreshHeaderView;
@@ -28,6 +30,7 @@
     
     
     ///////////////////
+    MBProgressHUD *HUD;
     HttpClient                      *httpClient;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableref;

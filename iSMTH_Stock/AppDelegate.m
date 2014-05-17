@@ -13,7 +13,7 @@
 #import "SecondViewController.h"
 #import "ViewController.h"
 #import "AppAboutViewController.h"
-
+#import "MobClick.h"
 
 #import "TempViewController.h"
 @implementation AppDelegate
@@ -23,8 +23,13 @@
 @synthesize navigationController=_navigationController;
 
 
+//508dfc395270151c54000046
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MobClick startWithAppkey:UMENG_ID reportPolicy:REALTIME channelId:nil];
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2,*viewController3, *viewController4;
@@ -51,15 +56,18 @@
     
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [UIColor colorWithRed:81/255.0 green:62/255.0 blue:65/255.0 alpha:1],UITextAttributeTextColor,
-                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,nil];
+                          [UIFont fontWithName:@"Arial-Bold"size:5.0], UITextAttributeFont,
+                          [UIColor colorWithRed:134/255.0 green:122/255.0 blue:65/255.0 alpha:1],UITextAttributeTextColor,
+                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
+                        
+                          nil];
     
     
     self.navigationController.navigationBar.titleTextAttributes = dict;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:227/255.0 green:227/255.0 blue:223/255.0 alpha:1.0];
     
-   
-   
+    self.navigationController.navigationBar.topItem.title = @"精彩板块";
+    //self.navigationController.navigationBar.topItem.
     return YES;
 }
 
@@ -115,5 +123,14 @@
 {
 }
 */
+static void uncaughtExceptionHandler(NSException *exception) {
+    
+    NSLog(@"CRASH: %@", exception);
+    
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    
+    // Internal error reporting
+    
+}
 
 @end

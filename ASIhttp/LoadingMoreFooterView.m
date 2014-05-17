@@ -40,7 +40,7 @@
         
         self.textLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, frame.size.width, frame.size.height)] autorelease];
         self.textLabel.textAlignment = UITextAlignmentCenter;
-        self.textLabel.text = NSLocalizedString(@"Pull to load more", @"Legen Sie mehr");
+        self.textLabel.text = NSLocalizedString(@"拖动刷新", @"Legen Sie mehr");
         self.textLabel.textColor = [UIColor darkGrayColor];
         [self addSubview:self.textLabel];
         
@@ -69,13 +69,13 @@
         self.activityView.center = CGPointMake(self.frame.size.width-40, self.frame.size.height / 2);
         [self addSubview:self.activityView];
         [self.activityView startAnimating];
-        self.textLabel.text = NSLocalizedString(@"Loading...", @"Laden");
+        self.textLabel.text = NSLocalizedString(@"加载中。。。", @"Laden");
     }
     else if (!showActivityIndicator) {
         [self.activityView stopAnimating];
         [self.activityView removeFromSuperview];
         self.activityView = nil;
-        self.textLabel.text = NSLocalizedString(@"Pull to load more", @"Legen Sie mehr");
+        self.textLabel.text = NSLocalizedString(@"拖动加载更多", @"Legen Sie mehr");
     }
 }
 

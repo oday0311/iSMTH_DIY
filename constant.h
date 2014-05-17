@@ -6,7 +6,10 @@
 #import "DataSingleton.h"
 
 
-
+////a1501758f6d0a00
+////a15090cb8c6f891
+#define ADMOB_PUBLISH_ID @"a15090cb8c6f891"
+#define UMENG_ID @"508dfc395270151c54000046"
 #define SMTH_BASE_URL @"http://www.newsmth.net/"
 
 #define NIUMAO_SIGNATURE @"http://www.newsmth.net/nForum/user/query/every1nome"
@@ -33,6 +36,7 @@
     DataSingleton* dataRecorder;
 }
 
-
++(NSMutableDictionary*)readDataFromPlist;
++(void)addDataToPlist:(NSString*)Keystring content:(NSString*)ContentString;
 
 @end

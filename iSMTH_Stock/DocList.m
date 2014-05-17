@@ -10,6 +10,10 @@
 #import "constant.h"
 #import "UIGlossyButton.h"
 #import  "topicDetailShow.h"
+#import "NSString+PDRegex.h"
+
+
+
 @implementation DocList
 @synthesize tableref = _tableref;
 
@@ -49,123 +53,8 @@
     NSLog(@"This is NetWork fail");
 }
 
-
--(NSString*) getSubString:(NSString*)inputString BeginString:(NSString*)string1 EndString:(NSString*)string2
-{
-    
-    @try {
-        NSRange range1= NSMakeRange(0, 0);
-        range1 =  [inputString rangeOfString:string1];
-        NSLog(@" %d, %d", range1.location, range1.length);
-        
-        int total_length = inputString.length;
-        
-        NSRange range2 = NSMakeRange(range1.location, total_length - range1.location);
-        range2 =[inputString rangeOfString:string2 options:NSCaseInsensitiveSearch range:range2];
-        
-        int finallength = range2.location - range1.location;
-        NSRange range3 = NSMakeRange(range1.location, finallength);
-        NSString* finalstring = [inputString substringWithRange:range3];
-        return finalstring;
-    }
-    @catch (NSException *exception) {
-        return @"get substring error";
-    }
-    
-    return @"";
-}
--(NSString*) getSubString2_beginstringnotinclude:(NSString*)inputString BeginString:(NSString*)string1 EndString:(NSString*)string2
-{
-    
-    @try {
-        NSRange range1= NSMakeRange(0, 0);
-        range1 =  [inputString rangeOfString:string1];
-        NSLog(@" %d, %d", range1.location, range1.length);
-        
-        int total_length = inputString.length;
-        
-        NSRange range2 = NSMakeRange(range1.location , total_length - range1.location);
-        range2 =[inputString rangeOfString:string2 options:NSCaseInsensitiveSearch range:range2];
-        
-        int finallength = range2.location - range1.location-range1.length;
-        NSRange range3 = NSMakeRange(range1.location+range1.length, finallength);
-        NSString* finalstring = [inputString substringWithRange:range3];
-        return finalstring;
-    }
-    @catch (NSException *exception) {
-        return @"get substring error";
-    }
-    
-    return @"";
-}
 #pragma mark - View lifecycle
--(void)getResultIntoTableData
-{
-    dataRecorder = [DataSingleton singleton];
-    
-    NSString* postlist = dataRecorder.stockBoardlist;
-    
-    NSRange containTopic = NSMakeRange(0, 0);
-    containTopic = [postlist rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
-    
-    int i = 0;
-    while( containTopic.length > 0 ) {
-        if (i++ == 8) {
-            NSLog(@"this is a testing code for debug");
-        }
-        NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
-        
-        NSRange range1_isTop = NSMakeRange(0, 0);
-        range1_isTop = [postlist rangeOfString:@"<tr class=\"top\""];
-        NSRange range1_isTopOdd=NSMakeRange(0, 0);
-        range1_isTopOdd = [postlist rangeOfString:@"<tr class=\"top bg-odd\">"];
-        if (range1_isTop.length==0 && range1_isTopOdd.length == 0) {
-            ///this topic is not a top topic.
-            
-        }
-        
-        NSString* substring_topic_writer = [self getSubString2_beginstringnotinclude:substring_topic BeginString:@"<td class=\"title_9\"><a href=" EndString:@"</a>"];
-        
-        NSRange range2= NSMakeRange(0, 0);
-        range2 =[substring_topic_writer rangeOfString:@"\">"];
-        if (range2.length == 0) {
-            break;
-        }
-        NSString* substring_topic_title  = [substring_topic_writer substringFromIndex:range2.location+range2.length];
-        
-        
-        NSString* substring_topic_link= [self getSubString:substring_topic BeginString:@"href=\"" EndString:@"title"];
-        
-        
-        
-        topic* newtopic = [[topic alloc] init];
-        
-        newtopic.link = substring_topic_link;
-        newtopic.topicTitle = substring_topic_title;
-        if (range1_isTop.length==0 && range1_isTopOdd.length ==0) {
-            NSLog(@" this topic is not a top topic.");
-            newtopic.IsTopTopic = FALSE;
-        }else
-        {
-            newtopic.IsTopTopic =TRUE;
-        }
-        
-        
-        
-        [arrayList addObject:newtopic];
-        
-        
-        
-        NSString* fowllowingList= [postlist substringFromIndex:containTopic.location + containTopic.length];
-        
-        postlist = fowllowingList;
-        
-        
-        
-        containTopic = [fowllowingList rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
-    }
-    
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -187,15 +76,32 @@
     
     dataRecorder = [DataSingleton singleton];
     
-    
-    httpClient=[[HttpClient alloc] initWithDelegate:self];
-    [httpClient getDetailContentList:[DataSingleton singleton].Selected_complete_url];
-    
-    
+    self.navigationItem.title = [DataSingleton singleton].selected_topic_title;
 }
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+}
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if ( [DataSingleton singleton].DocListFirstload == 1) {
+        [DataSingleton singleton].DocListFirstload = 0;
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"加载中";
+        [HUD show:YES];
+
+        
+        httpClient=[[HttpClient alloc] initWithDelegate:self];
+        [httpClient getDetailContentList:[DataSingleton singleton].Selected_complete_url];
+        
+        [HUD setHidden:YES];
+        
+    }
 }
 - (void)viewDidUnload
 {
@@ -203,11 +109,6 @@
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -253,6 +154,8 @@
         }
        
         
+        ///replace the &#45@!@#@ ，，，html实体字符 删除
+        currentTopic.topicTitle = [currentTopic.topicTitle stringByReplacingRegexPattern:@"&#.*?;" withString:@"-"];
         cell.textLabel.text = currentTopic.topicTitle;
         NSLog(@"   THE LABLE contain is %@ ", [arrayList objectAtIndex:indexPath.row]);
     }else{
@@ -369,7 +272,7 @@
 {
     return 40;
 }
-
+static int pageIndex = 1;
 -(void)btnPressLast
 {
     NSLog(@"btnPressLast begin ");
@@ -387,6 +290,7 @@
     }
     
     NSLog(@"The page index is %d", index);
+    pageIndex = index;
     NSString*urlWithIndex = [@"" stringByAppendingFormat:@"%@?p=%d",dataRecorder.Selected_complete_url, index];
     
     
@@ -406,6 +310,7 @@
     
     
     NSLog(@"The page index is %d", index);
+    pageIndex = index;
     [httpClient getDetailContentList:urlWithIndex];
     
 }
@@ -435,6 +340,14 @@
     }
     
     {
+        UILabel* pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 5, 60, 30)];
+        pageLabel.backgroundColor = [UIColor clearColor];
+        pageLabel.text = [@"" stringByAppendingFormat:@"第%d页", pageIndex ];
+        
+        [customView addSubview:pageLabel];
+    }
+   
+    {
         UIGNavigationButton *b;
         
         b = [[UIGNavigationButton alloc] initWithFrame:CGRectMake(220, 5, 80, 30)];
@@ -457,6 +370,128 @@
     return customView;
 }
 
+-(void)getResultIntoTableData
+{
+    dataRecorder = [DataSingleton singleton];
+    
+    NSString* postlist = dataRecorder.stockBoardlist;
+    
+    NSRange containTopic = NSMakeRange(0, 0);
+    containTopic = [postlist rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
+    
+    int i = 0;
+    while( containTopic.length > 0 ) {
+        if (i++ == 8) {
+            NSLog(@"this is a testing code for debug");
+        }
+        
+        @try {
+            NSString* substring_topic = [self getSubString:postlist BeginString:@"<a target=\"_blank\" href=\"/nForum/article/" EndString:@"</td></tr><tr ><td class=\"title_8\">"];
+            
+            NSRange range1_isTop = NSMakeRange(0, 0);
+            range1_isTop = [postlist rangeOfString:@"<tr class=\"top\""];
+            NSRange range1_isTopOdd=NSMakeRange(0, 0);
+            range1_isTopOdd = [postlist rangeOfString:@"<tr class=\"top bg-odd\">"];
+            if (range1_isTop.length==0 && range1_isTopOdd.length == 0) {
+                ///this topic is not a top topic.
+                
+            }
+            
+            NSString* substring_topic_writer = [self getSubString2_beginstringnotinclude:substring_topic BeginString:@"<td class=\"title_9\"><a href=" EndString:@"</a>"];
+            
+            NSRange range2= NSMakeRange(0, 0);
+            range2 =[substring_topic_writer rangeOfString:@"\">"];
+            if (range2.length == 0) {
+                break;
+            }
+            NSString* substring_topic_title  = [substring_topic_writer substringFromIndex:range2.location+range2.length];
+            
+            
+            NSString* substring_topic_link= [self getSubString:substring_topic BeginString:@"href=\"" EndString:@"title"];
+            
+            
+            
+            topic* newtopic = [[topic alloc] init];
+            
+            newtopic.link = substring_topic_link;
+            newtopic.topicTitle = substring_topic_title;
+            if (range1_isTop.length==0 && range1_isTopOdd.length ==0) {
+                NSLog(@" this topic is not a top topic.");
+                newtopic.IsTopTopic = FALSE;
+            }else
+            {
+                newtopic.IsTopTopic =TRUE;
+            }
+            
+            
+            
+            [arrayList addObject:newtopic];
+            
+            
+            
+            NSString* fowllowingList= [postlist substringFromIndex:containTopic.location + containTopic.length];
+            
+            postlist = fowllowingList;
+            
+            
+            
+            containTopic = [fowllowingList rangeOfString: @"<a target=\"_blank\" href=\"/nForum/article/"];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"get substring errro");
+        }
+     
+    }
+    
+}
 
+-(NSString*) getSubString:(NSString*)inputString BeginString:(NSString*)string1 EndString:(NSString*)string2
+{
+    
+    @try {
+        NSRange range1= NSMakeRange(0, 0);
+        range1 =  [inputString rangeOfString:string1];
+        NSLog(@" %d, %d", range1.location, range1.length);
+        
+        int total_length = inputString.length;
+        
+        NSRange range2 = NSMakeRange(range1.location, total_length - range1.location);
+        range2 =[inputString rangeOfString:string2 options:NSCaseInsensitiveSearch range:range2];
+        
+        int finallength = range2.location - range1.location;
+        NSRange range3 = NSMakeRange(range1.location, finallength);
+        NSString* finalstring = [inputString substringWithRange:range3];
+        return finalstring;
+    }
+    @catch (NSException *exception) {
+        return @"get substring error";
+    }
+    
+    return @"";
+}
+-(NSString*) getSubString2_beginstringnotinclude:(NSString*)inputString BeginString:(NSString*)string1 EndString:(NSString*)string2
+{
+    
+    @try {
+        NSRange range1= NSMakeRange(0, 0);
+        range1 =  [inputString rangeOfString:string1];
+        NSLog(@" %d, %d", range1.location, range1.length);
+        
+        int total_length = inputString.length;
+        
+        NSRange range2 = NSMakeRange(range1.location , total_length - range1.location);
+        range2 =[inputString rangeOfString:string2 options:NSCaseInsensitiveSearch range:range2];
+        
+        int finallength = range2.location - range1.location-range1.length;
+        NSRange range3 = NSMakeRange(range1.location+range1.length, finallength);
+        NSString* finalstring = [inputString substringWithRange:range3];
+        return finalstring;
+    }
+    @catch (NSException *exception) {
+        return @"get substring error";
+    }
+    
+    return @"";
+}
 
 @end

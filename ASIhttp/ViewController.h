@@ -14,12 +14,22 @@
 {
     int count;
     WaterflowView *flowView;
-    
+     UILabel* PagelabelView;
     
     ///////////////////////////////////
     NSMutableDictionary*  matchDictionary;
     HttpClient                      *httpClient;
+    
+    
+    UIButton* categoryButton;
+    
+    
+    //////////////
+    NSMutableArray* picPostDetailUrlArray;
 }
+
+@property(nonatomic, retain)UIButton*categoryButton;
+@property(nonatomic,retain) NSMutableArray* picPostDetailUrlArray;
 @property(nonatomic,retain) NSMutableDictionary*  matchDictionary;
 - (CGFloat)flowView:(WaterflowView *)flowView heightForCellAtIndex:(NSInteger)index;
 @end

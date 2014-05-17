@@ -53,7 +53,12 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     tableref.superview.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
 
+    HttpClient* httpClientAD=[[HttpClient alloc] initWithDelegate:self];
+    [httpClientAD getAdConfigInformation];
     
+    HttpClient* httpClientCookie=[[HttpClient alloc] initWithDelegate:self];
+    [httpClientCookie getCookie];
+
 }
 
 - (void)viewDidUnload
@@ -72,6 +77,7 @@
 static int firstTimeAppear = 1;
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.topItem.title = @"精彩板块";
     [super viewDidAppear:animated];
     if (firstTimeAppear==1) {
         firstTimeAppear = 0;
@@ -89,15 +95,7 @@ static int firstTimeAppear = 1;
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
-}
+
 
 - (IBAction)getSignature:(id)sender {
     MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
@@ -130,15 +128,9 @@ static int firstTimeAppear = 1;
 
 - (void)getStockBoardlist:(id)sender withInput:(NSString*)BASE_URL {
     
-//    MyHttp_remoteClient * httpclient = [[MyHttp_remoteClient alloc] init];
-//    NSString*signature = [httpclient httpSendRequest:BASE_URL];
-//    int total_length = signature.length;
-//    if (total_length > 10) {
-//                
-//        [DataSingleton singleton].stockBoardlist = signature;
-//    }
     UIViewController*
     viewController2 = [[DocList alloc] initWithNibName:@"DocList" bundle:nil];
+    [DataSingleton singleton].DocListFirstload = 1;
     [self.navigationController pushViewController:viewController2 animated:YES];
 }
 
@@ -148,8 +140,8 @@ static int firstTimeAppear = 1;
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [[[DataSingleton singleton] UserFavoriteListUrl ]count];;//[arrayList count];    
+  
+    return [[[DataSingleton singleton] UserFavoriteListUrl ]count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -161,7 +153,13 @@ static int firstTimeAppear = 1;
     }
     
     {
-        cell.textLabel.textColor  =[UIColor orangeColor];
+        if (indexPath.row >= 8) {
+            cell.textLabel.textColor  =[UIColor blackColor];
+        }else
+        {
+            cell.textLabel.textColor  =[UIColor orangeColor];
+        }
+        
         NSString* namestring = [[[DataSingleton singleton] UserFavoriteListName] objectAtIndex:indexPath.row];
         cell.textLabel.text = namestring;//[arrayList objectAtIndex:indexPath.row]; 
     }
@@ -179,12 +177,81 @@ static int firstTimeAppear = 1;
     NSString* fullUrl = [SMTH_BASE_URL stringByAppendingFormat:@"%@",longUrl];
     
     [DataSingleton singleton].Selected_complete_url = fullUrl;
+    [DataSingleton singleton].selected_topic_title = [[[DataSingleton singleton] UserFavoriteListName] objectAtIndex:indexPath.row];
+
     [self getStockBoardlist:self withInput:fullUrl];
 
     
 
     
 
+}
+-(void)doSuccess:(NSObject *)dict
+{
+    if([dict isKindOfClass:[NSDictionary class]])
+    { 
+        return;
+    }
+    NSLog(@"the return string is %@",dict);
+    NSString* dictString = (NSString*)dict;
+    NSRange findCookie = [dictString rangeOfString:@"};"];
+  
+    if (findCookie.length>0) {
+        NSRange start = [dictString rangeOfString:@"{"];
+       
+        
+        NSString* substring =[dictString substringFromIndex:start.location];
+         NSRange end = [substring rangeOfString:@"};"];
+        NSString*substring2 =[substring substringToIndex:end.location+1];
+        
+        NSMutableDictionary* cookieDict = [substring2 objectFromJSONString];
+        
+        
+        NSArray*keys = [cookieDict allKeys];
+        for (int i = 0;i<[keys count];i++) {
+            NSString* keystring = [keys objectAtIndex:i];
+            NSString* valuestring = [cookieDict objectForKey:keystring];
+            
+            [[DataSingleton singleton].cookieDictionary setValue:valuestring forKey:keystring];
+            
+        }
+        [DataSingleton singleton].IsCookieSetted = 1;
+        NSString* jsonString = [[DataSingleton singleton].cookieDictionary JSONString];
+        [DataSingleton singleton].cookieJsonString = (NSMutableString*)jsonString;
+        
+        [self setcookie];
+    }
+}
+
+
+-(void)setcookie
+{
+    if ([DataSingleton singleton].IsCookieSetted)
+    {
+        NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+        
+        
+        NSArray *myKeys = [[DataSingleton singleton].cookieDictionary allKeys];
+        for (int i = 0;i<myKeys.count; i++) {
+            NSString* keystring = [myKeys objectAtIndex:i];
+            NSString* valueString = [[DataSingleton singleton].cookieDictionary valueForKey:keystring];
+            [cookieProperties setObject:valueString forKey:keystring];
+            NSLog(@"The cookie value is %@",valueString);
+        }
+        
+        NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        
+    }
+    
+}
+-(void)doFail:(NSString *)msg
+{
+    NSLog(@"this is do fail");
+}
+-(void)doNetWorkFail
+{
+    NSLog(@"This is NetWork fail");
 }
 
 @end

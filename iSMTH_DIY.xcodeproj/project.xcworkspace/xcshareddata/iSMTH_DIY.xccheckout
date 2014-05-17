@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>35F09B2D-00F2-4217-A2D7-63B4C5D2C4F0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iSMTH_DIY</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E35CCDDC-E3B3-40C6-A6FF-914CF72ADCBE</key>
+		<string>https://svn.sinaapp.com/loll</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>2/ismth/iSMTH_Stock/iSMTH_DIY.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E35CCDDC-E3B3-40C6-A6FF-914CF72ADCBE</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>E35CCDDC-E3B3-40C6-A6FF-914CF72ADCBE</key>
+		<string>https://svn.sinaapp.com/loll</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://svn.sinaapp.com/loll/2/ismth/iSMTH_Stock/iSMTH_DIY.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E35CCDDC-E3B3-40C6-A6FF-914CF72ADCBE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E35CCDDC-E3B3-40C6-A6FF-914CF72ADCBE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>sina_loll</string>
+		</dict>
+	</array>
+</dict>
+</plist>

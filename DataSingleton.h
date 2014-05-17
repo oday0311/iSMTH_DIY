@@ -44,11 +44,67 @@
     ////////////////////////
     NSString* Selected_complete_url;
     NSInteger selected_url_pageIndex;
+    NSString* selected_topic_title;
     
+    ////////////////
+    int DocListFirstload ;
+    
+    
+    ///////////////////
+    
+    
+    /////////////////////////////
+    int ad_config_open;
+    NSMutableString* adImageUrl;
+    NSMutableString* linkUrl;
+    
+    int freshHistoryNeed;
+    NSDate* selectedDate;
+    
+    
+    
+    /////////////
+    int IsCookieSetted;
+    NSMutableDictionary* cookieDictionary;
+    NSMutableString* cookieJsonString;
+    
+    
+    
+    ////////////////////////
+    NSMutableString* shortUrl;
+    NSData* uploadData;
+    
+    ////////////////////////////////////
+    int usingMap;
+    UIImage* mapView;
+    
+    
+    ////////////////////////////////////
+    NSMutableString* stringSMScontent;
 };
 
 + (DataSingleton *)singleton;
 
+@property(nonatomic,retain)NSMutableString* cookieJsonString;
+@property(nonatomic,retain) NSMutableString* stringSMScontent;
+@property(nonatomic,assign) int usingMap;
+@property(nonatomic,retain) UIImage* mapView;
+
+@property(nonatomic,retain) NSData* uploadData;
+@property(nonatomic,retain) NSMutableString* shortUrl;
+
+
+@property(nonatomic, retain) NSMutableDictionary* cookieDictionary;
+@property(nonatomic,assign) int IsCookieSetted;
+@property(nonatomic, assign)    int freshHistoryNeed;
+
+@property(nonatomic, retain)    NSDate* selectedDate;
+
+@property(nonatomic,assign)int ad_config_open;
+@property(nonatomic,retain)NSMutableString* adImageUrl;
+@property(nonatomic,retain) NSMutableString* linkUrl;
+@property(nonatomic,retain)  NSString* selected_topic_title;
+@property(nonatomic,assign)int DocListFirstload ;
 @property(nonatomic,assign) NSInteger selected_url_pageIndex;
 @property(nonatomic,retain) NSString*Selected_complete_url;
 @property(nonatomic,retain) NSMutableArray*UserFavoriteListUrl;

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+#import "HttpClient.h"
+@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,HttpClientDelegate> {
     //UITextView *textView;
     UINavigationController* nav;
     UITableView *tableref;
