@@ -39,6 +39,7 @@
 		18CE5217162AEC000003FC41 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CE5215162AEC000003FC41 /* background@2x.png */; };
 		18F9303616FC95C70069CC03 /* BaiduShiTuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9303416FC95C70069CC03 /* BaiduShiTuViewController.m */; };
 		18F9303716FC95C70069CC03 /* BaiduShiTuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F9303516FC95C70069CC03 /* BaiduShiTuViewController.xib */; };
+		18FB426F19276D4100C26C84 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB426E19276D4100C26C84 /* Default-568h@2x.png */; };
 		623035F2150C397200DFE883 /* DocList.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F0150C397200DFE883 /* DocList.m */; };
 		623035F3150C397200DFE883 /* DocList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623035F1150C397200DFE883 /* DocList.xib */; };
 		623035F7150C399600DFE883 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623035F6150C399600DFE883 /* EGORefreshTableHeaderView.m */; };
@@ -185,6 +186,7 @@
 		18F9303316FC95C70069CC03 /* BaiduShiTuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduShiTuViewController.h; sourceTree = "<group>"; };
 		18F9303416FC95C70069CC03 /* BaiduShiTuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduShiTuViewController.m; sourceTree = "<group>"; };
 		18F9303516FC95C70069CC03 /* BaiduShiTuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaiduShiTuViewController.xib; sourceTree = "<group>"; };
+		18FB426E19276D4100C26C84 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		623035EF150C397200DFE883 /* DocList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocList.h; sourceTree = "<group>"; };
 		623035F0150C397200DFE883 /* DocList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocList.m; sourceTree = "<group>"; };
 		623035F1150C397200DFE883 /* DocList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocList.xib; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 		624154CE150AFD9900944D48 = {
 			isa = PBXGroup;
 			children = (
+				18FB426E19276D4100C26C84 /* Default-568h@2x.png */,
 				1842BF4516FDF5CC00F4C80C /* libz.1.2.5.dylib */,
 				628589A8156923E100FB5410 /* thirdParty */,
 				6241552B150B32E300944D48 /* Main */,
@@ -744,6 +747,7 @@
 				18B1805B1768A5DD007A995D /* navigationButtonSider.png in Resources */,
 				628589A01569096800FB5410 /* blueArrow.png in Resources */,
 				628589A7156909E200FB5410 /* ViewController.xib in Resources */,
+				18FB426F19276D4100C26C84 /* Default-568h@2x.png in Resources */,
 				18CE5216162AEC000003FC41 /* background.png in Resources */,
 				18CE5217162AEC000003FC41 /* background@2x.png in Resources */,
 				184CBC25162DA7960035F7EF /* TempViewController.xib in Resources */,

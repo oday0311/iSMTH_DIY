@@ -18,8 +18,8 @@
     NSArray* boardnamelist;
 }
 
-- (IBAction)getSignature:(id)sender;
-- (IBAction)getStockBoardlist:(id)sender;
+//- (IBAction)getSignature:(id)sender;
+//- (IBAction)getStockBoardlist:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableref;
 
 @end
