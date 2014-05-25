@@ -6,14 +6,14 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "smth_favoriteBoard.h"
 #import "MyHttp_remoteClient.h"
 #import "DataSingleton.h"
 #import "constant.h"
-#import "SecondViewController.h"
+#import "smth_boardSearch.h"
 #import "DocList.h"
 #import "TempViewController.h"
-@implementation FirstViewController
+@implementation smth_favoriteBoard
 @synthesize tableref;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

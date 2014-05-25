@@ -86,6 +86,10 @@ static DataSingleton * MyCommon_Singleton = nil;
             [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/Career_Plaza"];
             //社会招聘
             [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/Career_Upgrade"];
+            
+            //猎头招聘
+            [MyCommon_Singleton.UserFavoriteListUrl addObject:@"/nForum/board/ExecutiveSearch"];
+            
             //家庭生活
             [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/FamilyLife"];
             [MyCommon_Singleton.UserFavoriteListUrl addObject:@"nForum/board/WorkLife"];
@@ -101,6 +105,8 @@ static DataSingleton * MyCommon_Singleton = nil;
                 
                 [MyCommon_Singleton.UserFavoriteListName addObject:@"求职广场"];
                 [MyCommon_Singleton.UserFavoriteListName addObject:@"社会招聘"];
+                
+                [MyCommon_Singleton.UserFavoriteListName addObject:@"猎头招聘"];
                 [MyCommon_Singleton.UserFavoriteListName addObject:@"家庭生活"];
                     
                 [MyCommon_Singleton.UserFavoriteListName addObject:@"职业生涯"];

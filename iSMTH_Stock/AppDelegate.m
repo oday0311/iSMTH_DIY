@@ -8,9 +8,9 @@
 
 #import "AppDelegate.h"
 
-#import "FirstViewController.h"
+#import "smth_favoriteBoard.h"
 
-#import "SecondViewController.h"
+#import "smth_boardSearch.h"
 #import "ViewController.h"
 #import "AppAboutViewController.h"
 #import "MobClick.h"
@@ -34,14 +34,14 @@
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2,*viewController3, *viewController4;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
+        viewController1 = [[smth_favoriteBoard alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
+        viewController2 = [[smth_boardSearch alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
         viewController3 = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
         
         viewController4 = [[AppAboutViewController alloc] initWithNibName:@"AppAboutViewController" bundle:nil];
     } else {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
+        viewController1 = [[smth_favoriteBoard alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
+        viewController2 = [[smth_boardSearch alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
     }
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, viewController3,viewController4,nil];

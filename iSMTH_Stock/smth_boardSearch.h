@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,
+@interface smth_boardSearch : UIViewController<UITableViewDataSource,UITableViewDelegate,
 MBProgressHUDDelegate,UISearchBarDelegate> {
     UIWebView *webview;
     UITableView *tableref;

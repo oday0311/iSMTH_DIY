@@ -6,12 +6,12 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "smth_boardSearch.h"
 #import "DataSingleton.h"
 #import "NSString+PDRegex.h"
 #import "DocList.h"
 
-@implementation SecondViewController
+@implementation smth_boardSearch
 @synthesize tableref;
 @synthesize webview;
 

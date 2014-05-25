@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HttpClient.h"
-@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,HttpClientDelegate> {
+@interface smth_favoriteBoard : UIViewController<UITableViewDelegate, UITableViewDataSource,HttpClientDelegate> {
     //UITextView *textView;
     UINavigationController* nav;
     UITableView *tableref;
