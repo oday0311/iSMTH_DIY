@@ -10,7 +10,7 @@
 #import "WaterflowView.h"
 #import "HttpClient.h"
 
-@interface ViewController : UIViewController<WaterflowViewDelegate,WaterflowViewDatasource,UIScrollViewDelegate,HttpClientDelegate>
+@interface smth_waterflowPictureShow : UIViewController<WaterflowViewDelegate,WaterflowViewDatasource,UIScrollViewDelegate,HttpClientDelegate>
 {
     int count;
     WaterflowView *flowView;

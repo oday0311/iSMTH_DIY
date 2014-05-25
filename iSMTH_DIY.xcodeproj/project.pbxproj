@@ -113,8 +113,8 @@
 		628589991569095100FB5410 /* WaterflowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 628589941569095100FB5410 /* WaterflowView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		628589A01569096800FB5410 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6285899B1569096800FB5410 /* blueArrow.png */; };
 		628589A21569096800FB5410 /* LoadingMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6285899F1569096800FB5410 /* LoadingMoreFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		628589A6156909E200FB5410 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628589A4156909E200FB5410 /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		628589A7156909E200FB5410 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 628589A5156909E200FB5410 /* ViewController.xib */; };
+		628589A6156909E200FB5410 /* smth_waterflowPictureShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 628589A4156909E200FB5410 /* smth_waterflowPictureShow.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		628589A7156909E200FB5410 /* smth_waterflowPictureShow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 628589A5156909E200FB5410 /* smth_waterflowPictureShow.xib */; };
 		FA260955163E6816009F3D21 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA260952163E6816009F3D21 /* libUMFeedback.a */; };
 		FA260956163E6816009F3D21 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA260953163E6816009F3D21 /* umFeedback.bundle */; };
 		FA95590316393D010093EADD /* smthLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA95590216393D010093EADD /* smthLogo.png */; };
@@ -294,9 +294,9 @@
 		6285899B1569096800FB5410 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
 		6285899E1569096800FB5410 /* LoadingMoreFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingMoreFooterView.h; sourceTree = "<group>"; };
 		6285899F1569096800FB5410 /* LoadingMoreFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingMoreFooterView.m; sourceTree = "<group>"; };
-		628589A3156909E200FB5410 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ASIhttp/ViewController.h; sourceTree = "<group>"; };
-		628589A4156909E200FB5410 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ASIhttp/ViewController.m; sourceTree = "<group>"; };
-		628589A5156909E200FB5410 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ../ASIhttp/ViewController.xib; sourceTree = "<group>"; };
+		628589A3156909E200FB5410 /* smth_waterflowPictureShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = smth_waterflowPictureShow.h; path = ../ASIhttp/smth_waterflowPictureShow.h; sourceTree = "<group>"; };
+		628589A4156909E200FB5410 /* smth_waterflowPictureShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = smth_waterflowPictureShow.m; path = ../ASIhttp/smth_waterflowPictureShow.m; sourceTree = "<group>"; };
+		628589A5156909E200FB5410 /* smth_waterflowPictureShow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = smth_waterflowPictureShow.xib; path = ../ASIhttp/smth_waterflowPictureShow.xib; sourceTree = "<group>"; };
 		FA260952163E6816009F3D21 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		FA260953163E6816009F3D21 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		FA260954163E6816009F3D21 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
@@ -480,9 +480,9 @@
 				623035EF150C397200DFE883 /* DocList.h */,
 				623035F0150C397200DFE883 /* DocList.m */,
 				623035F1150C397200DFE883 /* DocList.xib */,
-				628589A3156909E200FB5410 /* ViewController.h */,
-				628589A4156909E200FB5410 /* ViewController.m */,
-				628589A5156909E200FB5410 /* ViewController.xib */,
+				628589A3156909E200FB5410 /* smth_waterflowPictureShow.h */,
+				628589A4156909E200FB5410 /* smth_waterflowPictureShow.m */,
+				628589A5156909E200FB5410 /* smth_waterflowPictureShow.xib */,
 				1800C71416FD5005003EB755 /* baiduShitu */,
 				188658C81632717A00798C91 /* AppAboutViewController.h */,
 				188658C91632717A00798C91 /* AppAboutViewController.m */,
@@ -746,7 +746,7 @@
 				62780CB7154E26B500A4AD5A /* icon@2x.png in Resources */,
 				18B1805B1768A5DD007A995D /* navigationButtonSider.png in Resources */,
 				628589A01569096800FB5410 /* blueArrow.png in Resources */,
-				628589A7156909E200FB5410 /* ViewController.xib in Resources */,
+				628589A7156909E200FB5410 /* smth_waterflowPictureShow.xib in Resources */,
 				18FB426F19276D4100C26C84 /* Default-568h@2x.png in Resources */,
 				18CE5216162AEC000003FC41 /* background.png in Resources */,
 				18CE5217162AEC000003FC41 /* background@2x.png in Resources */,
@@ -831,7 +831,7 @@
 				628589981569095100FB5410 /* FullyLoaded.m in Sources */,
 				628589991569095100FB5410 /* WaterflowView.m in Sources */,
 				628589A21569096800FB5410 /* LoadingMoreFooterView.m in Sources */,
-				628589A6156909E200FB5410 /* ViewController.m in Sources */,
+				628589A6156909E200FB5410 /* smth_waterflowPictureShow.m in Sources */,
 				18CE5212162AEA490003FC41 /* UIGlossyButton.m in Sources */,
 				184C90E2162C47A600CF6CA5 /* HttpClientSampleViewController.m in Sources */,
 				184C90E9162C47B600CF6CA5 /* HttpClient.m in Sources */,

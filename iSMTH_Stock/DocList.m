@@ -69,7 +69,7 @@
      arrayList  = [[NSMutableArray alloc]  init];
     arrayList_link = [[NSMutableArray alloc]  init];
     
-    
+    NSLog(@"this is in Doclist view did load");
     
     self.tableref.dataSource = self;
     self.tableref.delegate = self;
@@ -157,6 +157,7 @@
         ///replace the &#45@!@#@ ，，，html实体字符 删除
         currentTopic.topicTitle = [currentTopic.topicTitle stringByReplacingRegexPattern:@"&#.*?;" withString:@"-"];
         cell.textLabel.text = currentTopic.topicTitle;
+        cell.textLabel.numberOfLines = 0;
         NSLog(@"   THE LABLE contain is %@ ", [arrayList objectAtIndex:indexPath.row]);
     }else{
         cell.textLabel.textColor  =[UIColor blueColor];

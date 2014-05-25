@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 Appublisher. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
-#import "ViewController.h"
+#import "smth_waterflowPictureShow.h"
 #import "AsyncImageView.h"
 #import "NSString+PDRegex.h"
 #import "imageCacheManager.h"
@@ -15,12 +15,12 @@
 
 #define NUMBER_OF_COLUMNS 2
 
-@interface ViewController ()
+@interface smth_waterflowPictureShow ()
 @property (nonatomic,retain) NSMutableArray *imageUrls;
 @property (nonatomic,readwrite) int currentPage;
 @end
 
-@implementation ViewController
+@implementation smth_waterflowPictureShow
 @synthesize imageUrls=_imageUrls;
 @synthesize currentPage=_currentPage;
 @synthesize matchDictionary;
